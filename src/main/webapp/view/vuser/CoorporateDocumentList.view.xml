@@ -1,0 +1,65 @@
+<core:View xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	controllerName="controller.vuser.CoorporateDocumentList">
+	<Page showSubHeader="true" title="FairPrice Documents" titleLevel="Auto"
+		icon="sap-icon://list" showNavButton="false" enableScrolling="false">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>supplier_kit}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader" type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Bar>
+				<contentRight>
+					<SearchField id="corporateDocumentShare" liveChange="onFilterRequest"
+						placeholder="Search document" width="100%" />
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<Panel id="documentListPanel" headerText="Available Documents">
+				<customData>
+					<core:CustomData key="sap-ui-fastnavgroup" value="true"
+						writeToDom="true" id="__data2" />
+				</customData>
+				<content>
+					<List noDataText="Drop list items here" id="documentList" items="{corp>/result}" mode="None" select="onItemSelectedEvent">
+						<items>
+							<StandardListItem app:documentID="{corp>openCmisID}"
+								app:parentID="{corp>openCmisParentID}" app:contentType="{corp>contentType}"
+								type="{path:'corp>contentType',formatter:'Formatter.listType'}"
+								title="{corp>documentName}" description="{corp>documentInfo}"
+								icon="{path: 'corp>contentType', formatter: 'Formatter.fileIcon'}"
+								infoState="Warning" info="{corp>documentInfo}" counter="{corp>childCount}"
+								count="{corp>childCount}" unread="true"
+								activeIcon="sap-icon://message-information" press="onItemClickEvent" />
+
+						</items>
+					</List>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Toolbar width="100%" id="__toolbar0">
+				<customData>
+					<core:CustomData key="sap-ui-fastnavgroup" value="true"
+						writeToDom="true" id="__data3" />
+				</customData>
+				<content>
+					<Button text="Back" width="120px" id="navigate_back"
+						activeIcon="sap-icon://slim-arrow-left" icon="sap-icon://slim-arrow-left"
+						type="Emphasized" iconFirst="true" visible="false" press="onBackPress" />
+					<Button text="Download" width="120px" id="btnDownload"
+						activeIcon="sap-icon://download" icon="sap-icon://download" type="Emphasized"
+						iconFirst="false" visible="false" press="handleDownload" />
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

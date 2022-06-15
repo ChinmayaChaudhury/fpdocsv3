@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<List noDataText="Drop list items here" id="vendorGroupList" items="{vu>/result}"
+		mode="SingleSelect" select="onTableSelect">
+		<items>
+			<StandardListItem
+				type="Navigation"
+				title="{vu>vendorUserGroupName}" description="{vu>vendorUserGroupDesc}"
+				icon="sap-icon://group"
+				infoState="none" info="{vu>vendorUserGroupDesc}"
+				counter="{ path: 'vu>documents',  formatter: 'Formatter.count'}"
+				unread="true" activeIcon="sap-icon://group" press="onItemClickEvent" />
+
+		</items>
+	</List>
+</core:FragmentDefinition>

@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Label xmlns="sap.m" id="lHeader" busy="false" busyIndicatorDelay="1000"
+		visible="true" fieldGroupIds="" design="Standard" text="" textAlign="Begin"
+		textDirection="Inherit" width="" required="false" labelFor=""
+		validateFieldGroup="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+	</Label>
+
+
+	<Input xmlns="sap.m" id="iName" busy="false" busyIndicatorDelay="1000"
+		visible="true" />
+	<Button xmlns="sap.m" id="bClicker">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+	</Button>
+
+</core:FragmentDefinition>

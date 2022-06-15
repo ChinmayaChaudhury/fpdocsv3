@@ -1,0 +1,162 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page id="vendorCreatePage" showNavButton="{device>/isPhone}"
+		navButtonPress="onCancelVendorModifyEvent" class="sapUiResponsiveContentPadding"
+		showHeader="{device>/isPhone}">
+		<content>
+			<Panel>
+				<content>
+					<IconTabBar backgroundDesign="Translucent">
+						<items>
+							<IconTabFilter icon="sap-icon://detail-view"
+								iconColor="Neutral" showAll="false" text="Account Details">
+								<content>
+									<l:Grid defaultSpan="L12 M12 S12" width="auto">
+										<l:content>
+											<f:SimpleForm id="createVendorRecordID"
+												minWidth="1024" maxContainerCols="2" editable="true"
+												layout="ResponsiveGridLayout"
+												title="{path:'vendor>/action',formatter:'.getFragmentTitle'}"
+												labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+												columnsL="1" columnsM="1" class="editableForm">
+												<f:content>
+													<Label text="{i18n>lbl_vendor_code}" />
+													<Input id="vendor_code_input" value="{vendor>/vendorCode}"
+														name="vendorCode" />
+													<Label text="{i18n>lbl_vendor_name}" />
+													<Input id="vendor_name_input" value="{vendor>/vendorName}"
+														name="vendorName" />
+													<Label text="{i18n>lbl_vendor_admin_email}" />
+													<Input id="vendor_admin_email_input" value="{vendor>/vendorAdminEmail}"
+														name="vendorAdminEmail" />
+													<Label text="{i18n>lbl_vendor_admin_workno}" />
+													<Input id="vendor_admin_workno_input" value="{vendor>/work}"/>
+													<Label text="{i18n>lbl_vendor_admin_mobileno}" />
+													<Input id="vendor_admin_mobile_input" value="{vendor>/mobile}" />
+													<Label text="{i18n>lbl_vendor_category}" />
+													<ComboBox id="vendor_category_combo" items="{vc>/result}"
+														placeholder="{i18n>plh_users_group}" name="vendorCategory"
+														selectedKey="{vendor>/vendorCategory}">
+														<items>
+															<core:ListItem text="{vc>val}" key="{vc>key}" />
+														</items>
+													</ComboBox>
+
+													<Label text="{i18n>lbl_vendor_quota}" />
+													<Input
+														value="{path:'vendor>/vendorCategory',formatter:'.allocatedQuota'}"
+														id="allocated_quota_input" enabled="false" name="allocatedQuota" />
+													<Label text="{i18n>lbl_vendor_quota_utilization}" />
+
+													<ProgressIndicator displayValue="{vendor>/quotaUtilization}%"
+														percentValue="{vendor>/quotaUtilization}" showValue="true"
+														width="80%"
+														state="{path:'vendor>/quotaUtilization',formatter: 'Formatter.showUtilizationState'}"
+														class="sapUiSmallMarginBottom" />
+													<Button icon="sap-icon://delete" text="{i18n>btn_release_quota}"
+														press="releaseMoreSpace" type="Transparent" width="20px"
+														visible="{path:'vendor>/quotaUtilization',formatter: 'Formatter.showSpaceRecycler'}" />
+
+													<Label text="{i18n>lbl_user_vendor_verified}" />
+													<Switch id="vendor_account_verified_switch" enabled="false"
+														state="{vendor>/accountValidated}" customTextOn="{i18n>lbl_account_verified}"
+														customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin"
+														name="accountValidated">
+														<layoutData>
+															<FlexItemData growFactor="1" />
+														</layoutData>
+													</Switch>
+													<Label text="{i18n>lbl_account_status}" />
+													<ComboBox id="accountStatus_combo" items="{status>/result}"
+														name="systemAccountStatus" placeholder="{i18n>plh_users_group}"
+														selectedKey="{vendor>/systemAccountStatusUpdated}"
+														selectionChange="onChangeOfStatusEvent">
+														<items>
+															<core:ListItem key="{status>key}" text="{status>val}" />
+														</items>
+													</ComboBox>
+
+												</f:content>
+											</f:SimpleForm>
+										</l:content>
+									</l:Grid>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Administrator" icon="sap-icon://role"
+								iconColor="Neutral">
+								<l:Grid defaultSpan="L12 M12 S12" width="auto">
+									<l:content>
+										<f:SimpleForm minWidth="1024" maxContainerCols="2"
+											editable="false" layout="ResponsiveGridLayout" title="Vendor Administrator"
+											labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+											columnsL="1" columnsM="1">
+											<f:content>
+												<Label text="{i18n>lbl_user_firstname}" />
+												<Text text="{administrator>/firstName}" />
+												<Label text="{i18n>lbl_user_lastname}" />
+												<Text text="{administrator>/lastName}" />
+												<Label text="{i18n>lbl_sap_service_id}" />
+												<Text text="{administrator>/sciAccountID}" />
+												<Label text="{i18n>lbl_login_service_id}" />
+												<Text text="{administrator>/userName}" />
+												<Label text="{i18n>lbl_user_email}" />
+												<Text text="{administrator>/vendorUserEmail}" />
+												<Label text="{i18n>lbl_allow_document_share}" />
+												<Switch name="allowDocumentShare" state="{administrator>/allowDocumentShare}"
+													change="handleAllowDocumentShare" />
+											</f:content>
+										</f:SimpleForm>
+									</l:content>
+								</l:Grid>
+							</IconTabFilter>
+							<!-- <IconTabFilter text="Add Vendors" icon="sap-icon://add-product"
+								iconColor="Neutral">
+								<l:Grid defaultSpan="L12 M12 S12" width="auto">
+									<l:content>
+										<f:SimpleForm maxContainerCols="1" class="editableForm"
+											layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3"
+											emptySpanL="4" emptySpanM="4" columnsL="2" columnsM="1">
+											<f:content>
+												<Table id="idAddToVendorTable" inset="false"
+													items="{vendor>/addVendorsList}">
+													<headerToolbar>
+														<Toolbar>
+															<Button icon="sap-icon://add" press="addVendors"
+																type="Transparent" />
+														</Toolbar>
+													</headerToolbar>
+													<columns>
+														<Column>
+															<Text text="Vendor Code" />
+														</Column>
+														<Column demandPopin="true" minScreenWidth="Tablet">
+															<Text text="Vendor Name" />
+														</Column>
+														<Column demandPopin="true" minScreenWidth="Tablet">
+															<Text text="" />
+														</Column>
+													</columns>
+													<items>
+														<ColumnListItem>
+															<cells>
+																<Input value="{vendor>vendorCode}" enabled="{vendor>isEntryEnabled}"
+																	change="checkPattern" />
+																<Input value="{vendor>vendorName}" enabled="{vendor>isEntryEnabled}" />
+																<Button visible="{vendor>isEntryEnabled}" icon="sap-icon://delete"
+																	press="onPressDelete" text="" />
+															</cells>
+														</ColumnListItem>
+													</items>
+												</Table>
+											</f:content>
+										</f:SimpleForm>
+									</l:content>
+								</l:Grid>
+							</IconTabFilter>-->
+						</items>
+					</IconTabBar> 
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

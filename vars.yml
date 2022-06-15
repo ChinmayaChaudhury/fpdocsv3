@@ -1,0 +1,5 @@
+---
+# id provided could be environment based(dev/qa/prod)
+id: dev
+# Choose cfapps.eu10.hana.ondemand.com for the EU10 landscape, cfapps.us10.hana.ondemand.com for US10, AU- cfapps.ap10.hana.ondemand.com
+domain: cfapps.ap11.hana.ondemand.com

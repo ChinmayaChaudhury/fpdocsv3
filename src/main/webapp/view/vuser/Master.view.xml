@@ -1,0 +1,19 @@
+<mvc:View controllerName="controller.vuser.Master" xmlns:core="sap.ui.core"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page id="masterPage" showHeader="false"> 
+		<content>
+			<List id="menuList" noDataText="No Data" select="onSelect"
+				growing="true" items="{/menu}" growingScrollToLoad="true"
+				includeItemInSelection="true" headerText="{i18n>admin_masterTitle}">
+				<ObjectListItem title="{menu_display}" type="Active"
+					icon="sap-icon://{menu_icon}" press="onListItemPress">
+				</ObjectListItem>
+			</List>
+			<Image xmlns="sap.m" id="fpLogo" busy="false"
+				busyIndicatorDelay="1000" visible="true" fieldGroupIds=""
+				src="img/logo.png" mode="Image" backgroundSize="cover"
+				backgroundPosition="initial" backgroundRepeat="no-repeat" class="fpLogoStyle" />
+		</content> 
+	</Page>
+</mvc:View>

@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<List headerText="Vendor Accounts" id="vendorList" noDataText="No vendors managed by user"
+		items="{accounts>/result}">
+		<items>
+			<StandardListItem adaptTitleSize="true" 
+				description="{accounts>vendorCode}" icon="sap-icon://supplier"
+				info="{accounts>vendorAdminEmail}" title="{accounts>vendorName}" press="accountDrillDownEvent"
+				type="Navigation" />
+		</items>
+	</List>
+</core:FragmentDefinition>

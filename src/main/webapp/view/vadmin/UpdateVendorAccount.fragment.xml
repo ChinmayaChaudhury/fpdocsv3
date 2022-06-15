@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<l:Grid defaultSpan="L12 M12 S12" width="auto">
+		<l:content>
+			<f:SimpleForm id="updateVendorAccountID" minWidth="1024"
+				maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+				title="{i18n>title_update_vendor_account}" labelSpanL="3"
+				labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1"
+				class="editableForm">
+				<f:content>
+					<Label text="{i18n>lbl_sap_vendor_code}" />
+					<Input id="vendor_code_input" name="vendorCode" enabled="false"
+						value="{va>/vendorCode}" />
+					<Label editable="true" text="{i18n>lbl_vendor_name}" />
+					<Input id="vendor_name_input" name="vendorName" value="{va>/vendorName}" />
+					<Label text="{i18n>lbl_vendor_email}" />
+					<Input id="vendor_admin_email_input" name="vendorAdminEmail"
+						enabled="false" value="{va>/vendorAdminEmail}" />
+					<Label text="{i18n>lbl_login_service_id}" />
+					<Text text="{prof>/loginName}" />
+					<Label text="{i18n>lbl_account_category}" />
+					<Input id="vendor_category_input" name="vendorCategory"
+						enabled="false"
+						value="{parts: [{path:'va>/vendorCategory'},{path:'vac>/vendorCategory'}], formatter: 'Formatter.vendorCategoryName'}" />
+					<Label text="{i18n>lbl_user_vendor_verified}" />
+					<Switch name="accountValidated" enabled="false"
+						state="{va>/accountValidated}" customTextOn="{i18n>lbl_account_verified}"
+						customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+					<Label text="{i18n>lbl_validate_email}" />
+					<Switch id="verify_account_email_switch" change="handleEmailValidationSwitch"
+						customTextOn="{i18n>lbl_account_verified}" state="{va>/validateEmailDomain}"
+						customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin"
+						name="validateEmailDomain">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+					<Input editable="true" name="vendorEmailDomain" visible="{va>/validateEmailDomain}"
+						value="{path:'va>/vendorEmailDomain', formatter: 'Formatter.emailDomain'}"
+						id="email_domain" placeholder="*@vendor.com">
+						<layoutData>
+							<l:GridData span="L2 M2 S4" />
+						</layoutData>
+					</Input>
+					<Label text="{i18n>lbl_allocated_quota}" />
+					<Input value="{va>/allocatedQuota} MBs" enabled="false" />
+					<Label text="{i18n>lbl_utilized_quota}" />
+					<ProgressIndicator displayValue="{va>/quotaUtilization}%"
+						percentValue="{va>/quotaUtilization}" showValue="true"
+						state="{path:'va>/quotaUtilization',formatter: 'Formatter.showUtilizationState'}"
+						width="80%" class="sapUiSmallMarginBottom" />
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:Grid>
+</core:FragmentDefinition>

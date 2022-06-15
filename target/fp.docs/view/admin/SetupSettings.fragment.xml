@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<List id="quotaAllocations" noDataText="{i18n>list_no_data}"
+		items="{quotas>/result}" mode="SingleSelect" select="onItemSelectedEvent"
+		headerText="{i18n>title_quota_allocation}">
+		<items>
+
+			<ObjectListItem type="Active"
+				title="{parts: [{path:'quotas>vendorCategory'},{path:'vc>/result'}], formatter: 'Formatter.vendorCategoryName'}"
+				number="{quotas>quotaAllocated}" numberUnit="{i18n>quota_allocation_unit}"
+				intro="{i18n>lbl_vendor_allocated}" activeIcon="sap-icon://database"
+				icon="sap-icon://database" numberState="Success" markLocked="true">
+				<attributes>
+					<ObjectAttribute
+						text="{path:'quotas>vendorCategory',formatter: 'Formatter.quotaDescription'}"
+						active="false" />
+				</attributes> 
+			</ObjectListItem>
+		</items>
+	</List>
+
+</core:FragmentDefinition>

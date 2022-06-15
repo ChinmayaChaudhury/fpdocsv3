@@ -1,0 +1,45 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns="sap.m">
+	<Page title="Shared with others" navButtonPress="onPressBackButton" showNavButton="true">
+		<content>
+			<Panel id="shareSummary">
+				<customData>
+					<core:CustomData key="sap-ui-fastnavgroup" value="true"
+						writeToDom="true" id="__data1" />
+				</customData>
+				<content>
+					<ObjectHeader title="{req>/documentShareName}"
+						number="{ path: 'req>/sharedWithIDs',  formatter: 'Formatter.count'}"
+						numberUnit="Emails" intro="{req>/documentShareInfo}" introActive="false"
+						titleActive="false" iconActive="false" id="__header0">
+						<attributes>
+							<ObjectAttribute text="{req>/documentShareInfo}"
+								active="false" id="__attribute0" />
+						</attributes>
+						<statuses>
+							<ObjectStatus text="{req>/documentShareDesc}" id="__status1" />
+						</statuses>
+					</ObjectHeader>
+				</content>
+			</Panel>
+			<Panel id="document_uploads">
+				<content>
+					<List noDataText="Upload documents to share" id="uploadDocumentList"
+						items="{uploaded>/collection}" mode="Delete" delete="onDeleteDocumentsFromList" select="onItemSelectedEvent" 
+						headerText="Uploaded Documents">
+						<items>
+							<StandardListItem app:documentID="{uploaded>openCmisID}"
+								app:parentID="{uploaded>openCmisParentID}" type="None"
+								title="{uploaded>documentName}" description="{uploaded>documentInfo}"
+								icon="{path: 'uploaded>contentType', formatter: 'Formatter.fileIcon'}"
+								infoState="Warning" info="{uploaded>documentInfo}" unread="true"
+								activeIcon="sap-icon://message-information" press="onItemClickEvent" />
+						</items>
+					</List>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

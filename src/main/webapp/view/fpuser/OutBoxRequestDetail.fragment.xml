@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page backgroundDesign="Standard" class="sapUiResponsiveContentPadding" icon="sap-icon://message-information" navButtonPress="onPressBackButton" showNavButton="true">
+		<customHeader/>
+		<headerContent>
+			<Bar>
+				<contentMiddle>
+					<Label text="{documentRequest&gt;/documentInfo}" width="100%"/>
+				</contentMiddle>
+			</Bar>
+		</headerContent>
+		<content>
+			<Panel id="outboxRequestDetailPanel">
+				<content>
+					<ObjectHeader backgroundDesign="Transparent" icon="sap-icon://forward" iconActive="false" intro="{documentRequest&gt;/documentInfo}" introActive="false" number="{documentRequest&gt;/childCount}" numberUnit="Documents" responsive="false" showMarkers="false" showTitleSelector="false" title="{documentRequest&gt;/documentName}" titleActive="false">
+						<statuses>
+							<ObjectStatus text="{path: 'documentRequest>/createdBy', formatter: '.createdBy'}" title="Created By"/>
+						</statuses>
+						<attributes>
+							<ObjectAttribute text="{documentRequest&gt;/documentSizeMB} MBs" active="false" title="Document Size"/>
+							<ObjectAttribute title="Create Date" text="{path: 'documentRequest&gt;/documentCreateDate', formatter: 'Formatter.date'}" active="false"/>
+							<ObjectAttribute title="Expiry Date" text="{path: 'documentRequest&gt;/expiryDate', formatter: 'Formatter.date'}" active="false"/>
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar backgroundDesign="Translucent">
+						<items>
+							<IconTabFilter text="Vendor Details" iconColor="Default" icon="sap-icon://supplier">
+								<content>
+									<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
+										<f:content>
+											<Label text="Vendor Name"/>
+											<Text text="{documentRequest>/vendorAccount/vendorName}"/>
+											<Label text="VendorCode"/>
+											<Text text="{documentRequest>/vendorAccount/vendorCode}"/>
+										</f:content>
+									</f:SimpleForm>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter count="{path:'members&gt;/result',formatter:'.arrayCount'}" text="Vendor Users" icon="sap-icon://group" iconColor="Positive" showAll="false">
+								<content>
+									<List backgroundDesign="Transparent" headerText="Shared With" items="{members>/result}" noDataText="No data">
+										<items>
+											<StandardListItem description="{members>lastName}" info="{members>vendorUserEmail}" title="{members>firstName}"/>
+										</items>
+									</List>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://private" iconColor="Neutral" text="Participants" design="Vertical">
+								<content>
+									<List backgroundDesign="Transparent" headerText="Participants" items="{participant>/result}" noDataText="No data">
+										<items>
+										<InputListItem label="{participant>participantType}: {participant>dSFairPriceUser/firstName} {participant>dSFairPriceUser/lastName}"> 
+										     <Button  icon="sap-icon://delete" press="onDropParticipation" type="Transparent" width="20px"
+						 						visible="{parts: [{path:'participant>participantType'},{path:'participant>documentShareRequest/createdBy'}],formatter: '.showParticipationDelete'}" />
+										</InputListItem>
+											<!-- <StandardListItem description="" info="{participant>dSFairPriceUser/fairPriceEmail}" title="{participant>participantType}"/> -->
+										</items>
+									</List> 
+								</content>
+							</IconTabFilter>
+							
+							<IconTabFilter icon="sap-icon://permission" iconColor="Critical" text="Persmissions">
+								<content>
+									<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024">
+										<f:content>
+											<core:Title text="Restrictions"/> 
+											<Label text="Limited Availability"/>
+											<Switch enabled="false" state="{path: 'documentRequest&gt;/restriction', formatter: '.isLimitedAvailability'}"/>
+											<Label text="Password Secured"/>
+											<Switch enabled="false" state="{path: 'documentRequest&gt;/restriction', formatter: '.isPasscodeSecured'}"/>
+										</f:content>
+									</f:SimpleForm>
+								</content>
+							</IconTabFilter>
+
+							<IconTabFilter icon="sap-icon://activity-items" iconColor="Positive" text="Logs">
+								<content>
+										<List backgroundDesign="Transparent" headerText="Activities" items="{activity>/result}" noDataText="No data">
+										<items>
+											<StandardListItem description="{activity>actionDescription}" info="{activity>action}" title="{activity>actionedBy}"/>
+										</items>
+									</List> 
+								</content>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

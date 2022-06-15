@@ -1,0 +1,40 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="controller.vadmin.ManageAccount">
+	<Page id="detailPage" navButtonPress="onNavBack" showNavButton="{device>/isPhone}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>admin_mgtSetupTitle}" width="100%"/>
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader" type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" select="onTabFocus" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter icon="sap-icon://manager" text="Vendors" iconColor="Positive" id="accountTab" app:tabName="accountTab">
+						<Panel id="accountFragmentTargetPanel"/>
+					</IconTabFilter>
+					<IconTabSeparator/>
+					<IconTabFilter icon="sap-icon://group" iconColor="Critical" text="{i18n>lbl_account_groups}" id="groupsTab" app:tabName="groupsTab">
+						<core:Fragment fragmentName="view.vadmin.MaintainVendorGroup" type="XML"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Bar id="maintainVendorAccountGroups">
+				<contentLeft> 
+					<Button xmlns="sap.m" id="editAccountDetails" busy="false" busyIndicatorDelay="1000" visible="false" text="{i18n>btn_edit_account_detail}" type="Emphasized" enabled="true" icon="sap-icon://edit" iconFirst="true" iconDensityAware="true" textDirection="Inherit" press="onEditAccountDetails"/>
+					<Button xmlns="sap.m" id="viewUsersInGroup" busy="false" busyIndicatorDelay="1000" visible="false" text="{i18n>view_group_detail}" type="Default" enabled="true" icon="sap-icon://message-information" iconFirst="true" iconDensityAware="true" textDirection="Inherit" press="onViewUsersInGroup"/> 
+					
+				</contentLeft> <!-- sap.ui.core.Control -->
+				<contentRight>
+					<Button xmlns="sap.m" id="cancelAccountDetails" busy="false" busyIndicatorDelay="1000" visible="false" text="{i18n>btn_action_cancel}" type="Reject" enabled="true" iconDensityAware="true" textDirection="Inherit" press="onCancelAccountUpdate"/>
+					<Button xmlns="sap.m" id="saveAccountDetails" busy="false" busyIndicatorDelay="1000" visible="false" text="{i18n>btn_save_account_detail}" type="Accept" enabled="true" icon="sap-icon://save" iconFirst="true" iconDensityAware="true" textDirection="Inherit" press="onSaveAccountDetails"/>
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</core:View>

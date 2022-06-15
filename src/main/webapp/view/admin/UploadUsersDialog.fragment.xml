@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	class="viewPadding">
+	<Dialog title="{i18n>header_file_upload}">
+		<l:VerticalLayout>
+			<u:FileUploader id="userFileUploader" name="myFileUpload"
+				uploadUrl="fpadmin/bulk/upload/internal" width="400px"
+				tooltip="Upload your file to the local server" uploadComplete="handleUploadComplete"
+				change="handleValueChange" typeMissmatch="handleTypeMissmatch"
+				style="Emphasized" fileType="xlsx,csv" sendXHR="true"
+				placeholder="Choose a file for Upload...">
+				<u:parameters>
+					<u:FileUploaderParameter name="fairPriceGroupID"
+						value="{bulk>/fairPriceGroupID}" /> 
+				</u:parameters> 
+			</u:FileUploader>
+			<Label text="{i18n>lbl_user_role}" />
+			<ComboBox id="user_group_combo_id" items="{ug>/result}"
+				placeholder="{i18n>plh_users_group}" name="fairPriceGroupID" selectionChange="handleChangedSelectItem">
+				<items>
+					<core:ListItem text="{ug>fairPriceUserGroupDesc}"
+						key="{ug>fairPriceGroupID}" />
+				</items>
+			</ComboBox>
+			<Label id="error_user_message" />
+			<Button text="Upload File" press="handleUploadPress" />
+
+		</l:VerticalLayout>
+
+
+		<beginButton>
+			<Button text="{i18n>btn_action_cancel}" press="onCloseDialog"
+				type="Error" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

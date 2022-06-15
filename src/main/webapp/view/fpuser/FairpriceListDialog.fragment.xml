@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>lbl_available_participant}" draggable="true"
+		contentWidth="660px" type="Standard">
+		<content>
+			<List id="availableParticipants" noDataText="{i18n>list_no_data}"
+				items="{users>/result}" growingScrollToLoad="true" mode="MultiSelect">
+				<items>
+					<StandardListItem title="UserName" description="{users>userName}"
+						icon="sap-icon://supplier" info="{users>firstName} {users>lastName}" />
+				</items>
+			</List>
+		</content>
+		<beginButton>
+
+			<Button text="{i18n>btn_action_cancel}" press="onCloseUserDialog"
+				type="Error" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btn_action_add}" press="onAddParticipant"
+				type="Default" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

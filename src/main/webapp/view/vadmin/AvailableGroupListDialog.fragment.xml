@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>lbl_available_groups}" draggable="true" contentWidth="660px" type="Standard">
+		<content>
+			<List id="sciGroupsID"  noDataText="{i18n>list_no_data}" items="{deductedGroups>/result}" growingScrollToLoad="true"
+				mode="MultiSelect">
+				<items>
+					<StandardListItem title="Display Name" description="{deductedGroups>display}" icon="sap-icon://shield"
+						info="{deductedGroups>value}- {deductedGroups>description}"/>
+				</items>
+			</List>
+		</content>
+		<beginButton><Button text="{i18n>action_cancel}" press="onCloseDialog" type="Reject"/>
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>action_add}" press="onAddGroupToUser" type="Accept"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

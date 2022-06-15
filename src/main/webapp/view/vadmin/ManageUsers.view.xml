@@ -1,0 +1,50 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="controller.vadmin.ManageUsers"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page id="userDetailPage" navButtonPress="onNavBack"
+		showNavButton="{device>/isPhone}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>admin_userMgtTitle}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader"
+						type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer>
+			<Toolbar id="managerVendorController">
+				<ToolbarSpacer />
+
+				<Button xmlns="sap.m" id="btn_edit_user" visible="false"
+					busyIndicatorDelay="1000" text="{i18n>btn_action_edit}" type="None"
+					icon="sap-icon://edit" iconFirst="true" iconDensityAware="true"
+					textDirection="Inherit" press="onEditUserEvent" />
+				<Button xmlns="sap.m" id="btn_delete_user" visible="false"
+					busyIndicatorDelay="1000" text="{i18n>btn_action_delete}" type="Reject"
+					icon="sap-icon://delete" iconFirst="true" iconDensityAware="true"
+					textDirection="Inherit" press="onDeleteUserEvent" />
+				<Button xmlns="sap.m" id="btn_save_user" visible="false"
+					app:action="{user>/action}" busyIndicatorDelay="1000"
+					text="{i18n>btn_action_save}" type="Emphasized" icon="sap-icon://save"
+					iconFirst="true" iconDensityAware="true" textDirection="Inherit"
+					press="onPressSaveVendorUserDetails" />
+				<Button xmlns="sap.m" id="btn_cancel_user" visible="false"
+					busyIndicatorDelay="1000" text="{i18n>btn_action_cancel}" type="Reject"
+					icon="sap-icon://back" iconFirst="true" iconDensityAware="true"
+					textDirection="Inherit" press="onCancelUserModifyEvent" />
+				<Button xmlns="sap.m" id="btn_new_user" busy="false"
+					busyIndicatorDelay="1000" visible="true" text="{i18n>lbl_new_user}"
+					type="Emphasized" enabled="true" icon="sap-icon://employee"
+					iconFirst="true" iconDensityAware="true" textDirection="Inherit"
+					validateFieldGroup="" tap="" press="onCreateNewUserPress" />
+			<!-- 	<Button id="btn_provision_user_id" text="{i18n>action_provision_user}"
+					activeIcon="sap-icon://provision" icon="sap-icon://provision"
+					press="provisionUserToCompositeAuthGroup" visible="{path:'user>/action', formatter:'.showGroupSection'}" /> -->
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

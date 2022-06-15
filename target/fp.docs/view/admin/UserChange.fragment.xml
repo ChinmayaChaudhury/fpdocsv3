@@ -1,0 +1,100 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page id="userCreatePage" showNavButton="{device>/isPhone}"
+		navButtonPress="onCancelUserModifyEvent" class="sapUiResponsiveContentPadding"
+		showHeader="{device>/isPhone}">
+		<content>
+			<Panel>
+				<content>
+					<IconTabBar>
+						<items>
+							<IconTabFilter icon="sap-icon://detail-view"
+								showAll="false" text="Details">
+								<content>
+									<l:Grid defaultSpan="L12 M12 S12" width="auto">
+										<l:content>
+											<f:SimpleForm class="editableForm" columnsL="1"
+												editable="true" emptySpanL="4" emptySpanM="4"
+												id="updateUserRecordID" labelSpanL="3" labelSpanM="3"
+												layout="ResponsiveGridLayout" minWidth="1024"
+												title="{path:'user>/action',formatter:'.getFragmentTitle'}">
+												<f:content>
+													<Label text="{i18n>lbl_sap_service_id}" />
+													<Input enabled="false" id="user_sap_serviceid_input"
+														name="sciAccountID" placeholder="{i18n>plholder_service_sapid}"
+														value="{user>/sciAccountID}" width="100%" />
+													<Label text="{i18n>lbl_login_service_id}" />
+													<Input enabled="false" value="{user>/userName}" />
+													<Label text="{i18n>lbl_user_firstname}" />
+													<Input id="user_first_name_input" name="firstName"
+														value="{user>/firstName}" width="100%" />
+													<Label text="{i18n>lbl_user_lastname}" />
+													<Input id="user_last_name_input" name="lastName"
+														value="{user>/lastName}" width="100%" />
+													<Label text="{i18n>lbl_user_displayname}" />
+													<Input id="user_displayname_input" name="displayName"
+														placeholder="{i18n>plholder_sapid}" value="{user>/displayName}"
+														width="100%" />
+													<Label text="{i18n>lbl_user_email}" />
+													<Input enabled="false" id="user_email_input" name="fairPriceEmail"
+														value="{user>/fairPriceEmail}" width="100%" />
+													<Label text="{i18n>lbl_user_role}" />
+													<ComboBox id="user_group_combo" items="{ug>/result}"
+														name="fairPriceGroupID" placeholder="{i18n>plh_users_group}"
+														selectedKey="{user>/fairPriceGroupID}">
+														<items>
+															<core:ListItem key="{ug>fairPriceGroupID}"
+																text="{ug>fairPriceUserGroupDesc}" />
+														</items>
+													</ComboBox>
+													<Label text="{i18n>lbl_user_vendor_verified}" />
+													<Switch class="cojUiMediumMargin" customTextOff="{i18n>lbl_account_unverified}"
+														customTextOn="{i18n>lbl_account_verified}" enabled="false"
+														id="verified_switch" name="accountActivated" state="{user>/accountValidated}">
+														<layoutData>
+															<FlexItemData growFactor="1" />
+														</layoutData>
+													</Switch>
+													<Label text="{i18n>lbl_account_status}" />
+													<ComboBox id="accountStatus_combo" items="{status>/result}"
+														name="systemAccountStatus" placeholder="{i18n>plh_users_group}"
+														selectedKey="{user>/systemAccountStatus}">
+														<items>
+															<core:ListItem key="{status>key}" text="{status>val}" />
+														</items>
+													</ComboBox>
+												</f:content>
+											</f:SimpleForm>
+										</l:content>
+									</l:Grid>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter count="{path:'',formatter:'.'}"
+								icon="sap-icon://supplier" iconColor="Critical" text="Vendors">
+								<content>
+									<List noDataText="Drop list items here" items="{vendorRel>/result}"
+										mode="Delete" delete="onRemoveVendorRequestEvent">
+										<items>
+											<StandardListItem counter="0"
+												description="{vendorRel>vendorID/vendorCode}" icon="sap-icon://supplier"
+												title="{vendorRel>vendorID/vendorName}" type="Inactive" />
+										</items>
+										<headerToolbar>
+											<Toolbar width="100%">
+												<content>
+													<SearchField width="100%"
+														placeholder="Search by 'vendor name'" search="onSearchVendorEvent" />
+												</content>
+											</Toolbar>
+										</headerToolbar>
+									</List>
+								</content>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

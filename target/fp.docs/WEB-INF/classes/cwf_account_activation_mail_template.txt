@@ -1,0 +1,18 @@
+<p>Dear ${displayName},</p>
+<p>&nbsp;</p>
+<p>Welcome to NTUC FairPrice Collaborative Workflow System.</p>
+<p>Please take note of the followings:</p>
+<ol>
+<li>To activate your account, please <a href="${link}">click here</a></li>
+<li>Please use ${loginName}/${sciUserID} (temporary login ID) for your first submission</li>
+<li>Click ${lpdLink} to access to the Collaborative Work Flow system.</li>
+<li>A new login ID will be assigned upon successful creation of vendor code for ${companyName}. A separate email notification will be sent.</li>
+<li>Please find attached the user guide for your reference.</li>
+</ol>
+<p>For Help Desk Support, please contact +65 68172938 or email fpcwf_support@pracbiz.com</p>
+<p>This is a system-generated message. Please do not reply.</p>
+<p>&nbsp;</p>
+<p><br />Best Regards,</p>
+<p>FairPrice Collaborative Workflow Team</p>
+<p><br />If clicking the activation link above doesn't work, please copy and paste the below URL in a new browser window instead.<br />${link}</p>
+<p>&nbsp;</p>

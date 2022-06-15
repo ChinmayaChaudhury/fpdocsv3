@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page class="sapUiResponsiveContentPadding">
+		<content>
+			<List id="userList" noDataText="{i18n>list_no_data}" items="{users>/result}"
+				mode="SingleSelect" growingScrollToLoad="true" select="onItemSelectEvent">
+				<items>
+					<ObjectListItem title="{users>firstName} {users>lastName}"
+						intro="Login ID: {users>userName}" showMarker="true"
+						unread="{users>accountActivated}" icon="sap-icon://employee"
+						activeIcon="sap-icon://employee" press="onItemClickEvent">
+						<attributes>
+							<ObjectAttribute
+								text="SAP ID: {users>sciAccountID}"
+								active="false" />
+						</attributes>
+						<firstStatus>
+							<ObjectStatus
+								text="{path: 'users>accountValidated', formatter: 'Formatter.resolveAccountVerification'}"
+								state="{
+							      path: 'users>accountValidated',
+							      formatter: 'Formatter.status'
+						   }" />
+						</firstStatus>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+		<headerContent>
+			<SearchField liveChange="onFilterRequest" search="handleSearch"
+				width="100%" />
+		</headerContent>
+	</Page>
+</core:FragmentDefinition>

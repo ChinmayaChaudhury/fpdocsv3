@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	class="viewPadding">
+	<Dialog title="{i18n>header_file_upload}">
+		<l:VerticalLayout>
+			<u:FileUploader id="vendorFileUploader" name="myFileUpload"
+				uploadUrl="fpadmin/bulk/upload/vendors" width="400px" tooltip="Upload your file to the local server"
+				uploadComplete="handleVendorUploadComplete" change="handleValueChange"
+				typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="xlsx,csv"
+				sendXHR="true"
+				placeholder="Choose a file for Upload...">
+				 
+			</u:FileUploader>
+			<Button text="Upload File" press="handleVendorUploadPress" />
+		</l:VerticalLayout>
+
+
+		<beginButton>
+			<Button text="{i18n>btn_action_cancel}" press="onVendorCloseDialog"
+				type="Error" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

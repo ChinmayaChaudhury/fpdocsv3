@@ -1,0 +1,14 @@
+Dear ${displayName}, 
+
+A new document '${documentName}' has been uploaded to location '${folderName}' for your perusal. 
+   
+Kindly login FairPrice document service on the link ${documentShareLink}.
+
+Find the document under ${menuPlaceholder}>'${folderName}'.
+
+Kindly note the document is available up until ${expiryDate}.
+
+Thank you!
+
+Kind Regards,
+FairPrice Document Share Team

@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover class="sapUiContentPadding" placement="Top"
+		showHeader="false">
+		<content>
+			<l:VerticalLayout>
+				<l:content>
+					<Button xmlns="sap.m" text="Deleted Vendor Account" type="Default" />
+					<Button xmlns="sap.m" text="Deleted Vendor Administrator"
+						type="Default" />
+				</l:content>
+			</l:VerticalLayout>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

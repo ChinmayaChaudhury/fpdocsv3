@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	class="viewPadding">
+	<Dialog title="{i18n>header_file_upload}">
+		<l:VerticalLayout>
+			<u:FileUploader id="corporateDocumentUploader" name="fileUploader"
+				uploadUrl="upload/" width="400px"
+				tooltip="Upload your file to the local server" uploadComplete="handleCorporateUploadEventCompletion"
+				style="Emphasized" sendXHR="true" placeholder="Choose a file for Upload...">
+				<u:parameters>
+					<u:FileUploaderParameter name="openCmisID"
+						value="{req>/openCmisID}" />  
+				</u:parameters>
+			</u:FileUploader>
+			<Button text="Upload File" press="handleContentUploadPress" />
+		</l:VerticalLayout>
+		<beginButton>
+			<Button text="{i18n>btn_action_cancel}" press="onCloseUploadItemClickEvent"
+				type="Error" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

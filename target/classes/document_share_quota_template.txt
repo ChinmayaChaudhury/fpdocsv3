@@ -1,0 +1,18 @@
+Dear ${displayname}, 
+
+Please be advised that your quota is ${percentage}% utilized and needs to be freed up.
+
+To free up your quota,
+
+1.	Connect to your document share administration console. ${vendorAdministratorConsoleUrl}
+2.	Select 'Account Management ' menu from the left application menu panel
+3.	Click the 'Accounts',
+4.	Click on the entry item with vendor code '${vendorCode}'
+5.	Against the quota utilization field, click on the 'Recycle bin' icon 
+6.  Follow the wizard to complete the process
+
+
+Thank you!
+
+Kind Regards,
+FairPrice Document Share Team

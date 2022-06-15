@@ -1,0 +1,116 @@
+<core:FragmentDefinition xmlns:cmmns="sap.ui.commons"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns="sap.m">
+	<f:SimpleForm editable="true" layout="ResponsiveLayout"
+		maxContainerCols="2">
+		<f:content>
+			<!--User Info Section -->
+			<core:Title text="{i18n>VMgmt.title.userInfo}" />
+			<Label required="true" text="{i18n>VMgmt.userInfo.salutation}" />
+			<ComboBox items="{salutation>/result}" name="salutation"
+				placeholder="Select Salutation" selectedKey="{user>/salutation}">
+				<items>
+					<core:ListItem key="{salutation>key}" text="{salutation>val}" />
+				</items>
+			</ComboBox>
+			<Label required="true" text="{i18n>VMgmt.userInfo.name}" />
+			<Input value="{user>/firstName}" placeholder="{i18n>VMgmt.userInfo.firstName.placeholder}" />
+			<Input placeholder="{i18n>VMgmt.userInfo.lastName.placeholder}"
+				value="{user>/lastName}" />
+			<Label required="true" text="{i18n>VMgmt.userInfo.displayName}" />
+			<Input placeholder="{i18n>VMgmt.userInfo.displayName.placeholder}"
+				value="{user>/displayName}" />
+			<Label text="{i18n>VMgmt.userInfo.email}" required="true" />
+			<Input value="{user>/email}" placeholder="{i18n>VMgmt.userInfo.email.placeholder}"
+				change="onChangeEmailAddress" />
+			<Label text="{i18n>VMgmt.userInfo.mobileNo}" />
+			<Input value="{user>/mobile}" placeholder="{i18n>VMgmt.userInfo.mobileNo.placeholder}" />
+			<Label text="{i18n>VMgmt.userInfo.userName}" />
+			<Input value="{user>/userID}" placeholder="{i18n>VMgmt.userInfo.userName.placeholder}"
+				change="isSpecialCharacter" maxLength="20"/>
+			<!-- <Text text="@{user>/vendorCode}" /> -->
+			<cmmns:TextView text="@{user>/vendorCode}" class="cmmnstTextViewClass"
+				semanticColor="Positive" design="H5" />
+
+			<!--Company Info Section -->
+			<core:Title text="{i18n>VMgmt.title.companyInfo}" />
+			<Label required="true" text="{i18n>VMgmt.companyInfo.jobTitle}" />
+			<Input placeholder="{i18n>VMgmt.companyInfo.jobTitle.placeholder}"
+				value="{user>/jobTitle}" />
+			<Label text="{i18n>VMgmt.companyInfo.workNo}" required="true" />
+			<Input value="{user>/work}" placeholder="{i18n>VMgmt.companyInfo.workNo.placeholder}" />
+			<Label text="{i18n>lbl_vuser_group}" />
+			<MultiComboBox items="{ug>/result}" selectedKeys="{user>/vendorUserGroupIDs}"
+				name="vendorUserGroupID" placeholder="{i18n>plh_users_group_type}">
+				<items>
+					<core:ListItem text="{ug>vendorUserGroupDesc}" key="{ug>vendorGroupID}" />
+				</items>
+			</MultiComboBox>
+			<Label text="{i18n>lbl_user_vendor_verified}" visible="{vendor>/isEdit}" />
+			<Switch enabled="false" state="{user>/accountValidated}"
+				customTextOn="{i18n>lbl_account_verified}" customTextOff="{i18n>lbl_account_unverified}"
+				class="cojUiMediumMargin" name="accountValidated" visible="{user>/isEdit}">
+				<layoutData>
+					<FlexItemData growFactor="1" />
+				</layoutData>
+			</Switch>
+			<Label text="{i18n>lbl_account_status}" visible="{vendor>/isEdit}" />
+			<Select placeholder="{i18n>plh_users_group}" selectedKey="{user>/systemAccountStatusUpdated}"
+				change="selectAccountStatus" visible="{user>/isEdit}" items="{status>/result}">
+				<core:Item key="{status>key}" text="{status>val}" />
+			</Select>
+
+			<!--Manage User access to Vendor Codes Section -->
+			<core:Title text="{i18n>VMgmt.title.accessDetails}" />
+			<Table inset="false" items="{user>/authorizationList}">
+				<headerToolbar>
+					<Toolbar>
+						<Button icon="sap-icon://add" press="onPressAddVendorUsers"
+							type="Transparent" />
+						<cmmns:TextView text="{i18n>VMgmt.vendorusers.message}"
+							semanticColor="Critical" design="H6" wrapping="true" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>VUser.vendors.selectVCode}" />
+					</Column>
+					<Column demandPopin="true" minScreenWidth="Tablet">
+						<Text text="{i18n>VUser.vendors.vName}" />
+					</Column>
+					<Column demandPopin="true" width="25em">
+						<Text text="{i18n>VUser.vendors.access}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>VUser.vendors.selectAccount}" />
+					</Column>
+					<Column></Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Select placeholder="{i18n>plh_vendor_code}" selectedKey="{user>vendorCode}"
+								enabled="{user>isVendorCode}" change="selectVendorCode"
+								items="{path: 'accountInfo>/vendorList',sorter: { path: '0' }}"
+								valueState="{user>vState}">
+								<core:Item key="{accountInfo>0}" text="{accountInfo>0} {accountInfo>1}" />
+							</Select>
+							<Text text="{user>vendorName}" />
+							<MultiComboBox items="{accountInfo>/groups}"
+								selectedKeys="{user>selectedGroups}">
+								<items>
+									<core:ListItem text="{accountInfo>groupDesc}"
+										key="{accountInfo>groupName}" />
+								</items>
+							</MultiComboBox>
+							<CheckBox selected="{user>isVendorUser}" enabled="{user>isCreate}"
+								select="selectUser" />
+							<Button visible="{user>isDelete}" icon="sap-icon://delete"
+								press="onPressDelete" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

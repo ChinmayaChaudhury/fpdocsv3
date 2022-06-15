@@ -1,0 +1,157 @@
+<core:FragmentDefinition xmlns:cmmns="sap.ui.commons"
+	xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:table="sap.ui.table" xmlns="sap.m">
+	<l:VerticalLayout>
+		<f:SimpleForm editable="true" layout="ResponsiveLayout"
+			maxContainerCols="2">
+			<f:content>
+				<!--User Info Section -->
+				<core:Title text="{i18n>VMgmt.title.userInfo}" />
+				<Label required="true" text="{i18n>VMgmt.userInfo.salutation}"
+					visible="{vendor>/isNew}" />
+				<ComboBox items="{salutation>/result}" name="salutation"
+					placeholder="Select Salutation" selectedKey="{vendor>/salutation}"
+					visible="{vendor>/isNew}">
+					<items>
+						<core:ListItem key="{salutation>key}" text="{salutation>val}" />
+					</items>
+				</ComboBox>
+				<Label required="true" text="{i18n>VMgmt.userInfo.name}" />
+				<Input value="{vendor>/firstName}" placeholder="{i18n>VMgmt.userInfo.firstName.placeholder}" />
+				<!-- <Label required="true" text="Last Name" /> -->
+				<Input placeholder="{i18n>VMgmt.userInfo.lastName.placeholder}"
+					value="{vendor>/lastName}" />
+				<Label required="true" text="{i18n>VMgmt.userInfo.displayName}" />
+				<Input placeholder="{i18n>VMgmt.userInfo.displayName.placeholder}"
+					value="{vendor>/displayName}" />
+				<Label text="{i18n>VMgmt.userInfo.email}" required="true" />
+				<Input value="{vendor>/email}" placeholder="{i18n>VMgmt.userInfo.email.placeholder}"
+					change="onChangeEmailAddress" />
+				<Label text="{i18n>VMgmt.userInfo.mobileNo}" />
+				<Input value="{vendor>/mobile}" placeholder="{i18n>VMgmt.userInfo.mobileNo.placeholder}" />
+				<!--Company Info Section -->
+				<core:Title text="{i18n>VMgmt.title.companyInfo}" />
+				<Label text="{i18n>VMgmt.companyInfo.userId}" />
+				<Text text="{vendor>/userID}@{vendor>/vendorCode}" />
+				<Label required="true" text="{i18n>VMgmt.companyInfo.jobTitle}" />
+				<Input placeholder="{i18n>VMgmt.companyInfo.jobTitle.placeholder}"
+					value="{vendor>/jobTitle}" />
+				<Label text="{i18n>VMgmt.companyInfo.workNo}" required="true" />
+				<Input value="{vendor>/work}" placeholder="{i18n>VMgmt.companyInfo.workNo.placeholder}" />
+				<Label text="{i18n>VMgmt.companyInfo.vendorCat}" required="true" />
+				<ComboBox id="vendorCategory_combo" items="{vc>/result}"
+					name="vendorCategory" placeholder="{i18n>plh_users_group}"
+					selectedKey="{vendor>/vendorCategory}"
+					enabled="{path:'vendor>/vendorCategory',formatter:'.isEnabled'}">
+					<items>
+						<core:ListItem key="{vc>key}" text="{vc>val}" />
+					</items>
+				</ComboBox>
+<!--  JR -->
+	<Label text="{i18n>lbl_vendor_quota}" visible="{vendor>/isEdit}" />
+				<Input id="allocated_quota_input"
+					value="{path:'vendor>/vendorCategory'}"
+					enabled="false" name="allocatedQuota" visible="{vendor>/isEdit}" />
+				<Label text="{i18n>lbl_vendor_quota_utilization}" visible="{vendor>/isEdit}" />
+				<ProgressIndicator displayValue="{vendor>/quotaUtilization}%"
+					percentValue="{vendor>/quotaUtilization}" showValue="true" width="80%"
+					state="{path:'vendor>/quotaUtilization'}"
+					class="sapUiSmallMarginBottom" visible="{vendor>/isEdit}" />
+				<Button icon="sap-icon://delete" text="{i18n>btn_release_quota}"
+					press="releaseMoreSpace" type="Transparent" width="20px"
+					visible="{path:'vendor>/quotaUtilization'}" />
+					
+			<!-- 	<Label text="{i18n>lbl_vendor_quota}" visible="{vendor>/isEdit}" />
+				<Input id="allocated_quota_input"
+					value="{path:'vendor>/vendorCategory',formatter:'.allocatedQuota'}"
+					enabled="false" name="allocatedQuota" visible="{vendor>/isEdit}" />
+				<Label text="{i18n>lbl_vendor_quota_utilization}" visible="{vendor>/isEdit}" />
+				<ProgressIndicator displayValue="{vendor>/quotaUtilization}%"
+					percentValue="{vendor>/quotaUtilization}" showValue="true" width="80%"
+					state="{path:'vendor>/quotaUtilization',formatter: 'Formatter.showUtilizationState'}"
+					class="sapUiSmallMarginBottom" visible="{vendor>/isEdit}" />
+				<Button icon="sap-icon://delete" text="{i18n>btn_release_quota}"
+					press="releaseMoreSpace" type="Transparent" width="20px"
+					visible="{path:'vendor>/quotaUtilization',formatter: 'Formatter.showSpaceRecycler'}" /> -->
+
+				<Label text="{i18n>lbl_user_vendor_verified}" visible="{vendor>/isEdit}" />
+				<Switch enabled="false" state="{vendor>/accountValidated}"
+					customTextOn="{i18n>lbl_account_verified}" customTextOff="{i18n>lbl_account_unverified}"
+					class="cojUiMediumMargin" name="accountValidated" visible="{vendor>/isEdit}">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+				</Switch>
+				<Label text="{i18n>lbl_account_status}" visible="{vendor>/isEdit}" />
+				<!-- <ComboBox id="accountStatus_combo" items="{status>/result}" name="systemAccountStatus" 
+					placeholder="{i18n>plh_users_group}" selectedKey="{vendor>/systemAccountStatusUpdated}" 
+					selectionChange="selectAccountStatus" visible="{vendor>/isEdit}"> <items> 
+					<core:ListItem key="{status>key}" text="{status>val}" /> </items> </ComboBox> -->
+				<Select placeholder="{i18n>plh_users_group}" selectedKey="{vendor>/systemAccountStatusUpdated}"
+					change="selectAccountStatus" visible="{vendor>/isEdit}" items="{status>/result}">
+					<core:Item key="{status>key}" text="{status>val}" />
+				</Select>
+			</f:content>
+		</f:SimpleForm>
+		<!--Vendor Info Section -->
+		<f:SimpleForm maxContainerCols="1" layout="ResponsiveLayout">
+			<f:content>
+				<!--Vendor Admin Access -->
+				<core:Title text="{i18n>VMgmt.title.accessDetails}" />
+				<l:VerticalLayout>
+					<MultiComboBox items="{vendors>/relMap/groupsLookup}"
+						selectedKeys="{vendor>/selectedGroups}">
+						<items>
+							<core:ListItem text="{vendors>groupDesc}" key="{vendors>groupName}" />
+						</items>
+					</MultiComboBox>
+				</l:VerticalLayout>
+				<core:Title text="{i18n>VMgmt.title.vendorInfo}" />
+				<Table id="idAddToVendorTable" inset="false"
+					items="{vendor>/vendorAccountModels}">
+					<headerToolbar>
+						<Toolbar>
+							<Button icon="sap-icon://add" press="onPressAddVendors"
+								type="Transparent" />
+							<cmmns:TextView text="{i18n>VMgmt.vendors.message}"
+								semanticColor="Critical" design="H6" wrapping="true" />
+						</Toolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="{i18n>VMgmt.vendors.vendorCode}" />
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet">
+							<Text text="{i18n>VMgmt.vendors.vendorName}" />
+						</Column>
+						<!-- <Column demandPopin="true" width="25em"> <Text text="{i18n>VUser.vendors.access}" 
+							/> </Column> -->
+						<Column demandPopin="true" minScreenWidth="Tablet">
+							<Text text="{i18n>VMgmt.vendors.selectAdmin}" />
+						</Column>
+						<Column demandPopin="true" minScreenWidth="Tablet">
+							<Text text="" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Input enabled="{vendor>isNewVendor}" value="{vendor>vendorCode}"
+									valueHelpOnly="false" change="onChangeVendorCode" />
+								<Input enabled="{vendor>isNewVendor}" value="{vendor>vendorName}"
+									wrapping="true" />
+								<!-- <MultiComboBox items="{vendor>/groupsAssignment}" selectedKeys="{vendor>selectedGroups}"> 
+									<items> <core:ListItem text="{accountInfo>groupDesc}" key="{accountInfo>groupName}" 
+									/> </items> </MultiComboBox> -->
+								<CheckBox selected="{vendor>isVendorAdmin}" enabled="{vendor>isCreate}"
+									select="selectAdmin" />
+								<Button visible="{vendor>isDelete}" icon="sap-icon://delete"
+									press="onPressDelete" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</f:content>
+		</f:SimpleForm>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

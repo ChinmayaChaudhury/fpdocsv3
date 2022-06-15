@@ -1,0 +1,16 @@
+Dear ${displayName}, 
+
+You have been added as a contributor to '${folderName}' by the ${createdBy}. 
+   
+To access the documents, kindly login FairPrice document service on the link 
+
+${documentShareLink}.
+
+Find the document under outbox>'${folderName}'.
+
+Kindly note the document is available up until ${expiryDate}.
+
+Thank you!
+
+Kind Regards,
+FairPrice Document Share Team

@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.ui.layout.form" class="viewPadding">
+	<Dialog title="{path:'group>/action',formatter:'.groupDialogTitle'}">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto">
+			<l:content>
+				<f:SimpleForm id="userGroupID" minWidth="1024"
+					maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+					columnsL="1" columnsM="1" class="editableForm">
+					<f:content>
+						<Label text="{i18n>lbl_users_group_name}" />
+						<Input id="users_group_name_input"/>
+
+						<Label text="{i18n>lbl_users_group_desc}" />
+						<Input id="users_group_desc_input"/>
+
+						<Label text="{i18n>lbl_users_group_type}" />
+						<ComboBox id="user_group_type_combo" items="{ug>/result}" enabled="{path:'group>/action', formatter:'.comboEditable'}"
+							placeholder="{i18n>plh_users_group_type}" selectedKey="{group>/key}">
+							<items>
+								<core:ListItem text="{ug>val}" key="{ug>key}" />
+							</items>
+						</ComboBox>
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="{i18n>btn_action_save}" press="onSaveUserGroup"
+				type="Accept"  app:action="{group>/action}" />
+			<Button text="{i18n>btn_action_cancel}" press="onUserGroupCloseDialog"
+				type="Error" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

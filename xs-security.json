@@ -1,0 +1,134 @@
+{
+  "xsappname": "fp-docs",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.VN_DS_USER_RL",
+      "description": "Vendor User Permissions."
+    },
+    {
+      "name": "$XSAPPNAME.FP_DS_EVERYONE_RL",
+      "description": "All User Permissions."
+    },
+    {
+      "name": "$XSAPPNAME.FP_SERVICE_API_RL",
+      "description": "Integrated Services Permissions."
+    }
+    ,
+    {
+      "name": "$XSAPPNAME.VN_DS_ADMIN_RL",
+      "description": "Vendor Administrator Permissions."
+    }
+    ,
+    {
+      "name": "$XSAPPNAME.FP_DS_ADMIN_RL",
+      "description": "Internal Documents Administrator Permissions."
+    }
+    ,{
+      "name": "$XSAPPNAME.FP_DS_USER_RL",
+      "description": "Internal Documents   User Permissions."
+    }
+
+  ],
+  "role-templates": [
+    {
+      "name": "VN_DS_USER_RL",
+      "description": "Vendor Documents EndUser",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.VN_DS_USER_RL"
+      ]
+    },
+    {
+      "name": "VN_DS_ADMIN_RL",
+      "description": "Vendor Documents Administrator",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.VN_DS_ADMIN_RL"
+      ]
+    },
+
+    {
+      "name": "FP_DS_ADMIN_RL",
+      "description": "Internal Documents Administrator",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.FP_DS_ADMIN_RL"
+      ]
+    },
+    {
+      "name": "FP_DS_USER_RL",
+      "description": "Internal Documents EndUser",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.FP_DS_USER_RL"
+      ]
+    }
+    ,
+    {
+      "name": "FP_SERVICE_API_RL",
+      "description": "Integration Service User",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.FP_SERVICE_API_RL"
+      ]
+    }
+    ,
+    {
+      "name": "FP_DS_EVERYONE_RL",
+      "description": "All user templated",
+      "scope-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "VENDOR_ADMIN_ROLE",
+      "description": "Vendor Administrator",
+      "role-template-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.VN_DS_ADMIN_RL",
+        "$XSAPPNAME.VN_DS_USER_RL"
+      ]
+    },
+    {
+      "name": "VENDOR_USER_ROLE",
+      "description": "Vendor User",
+      "role-template-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.VN_DS_USER_RL"
+      ]
+    },
+
+    {
+      "name": "SERVICE_API_ROLE",
+      "description": "Service Api User",
+      "role-template-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.FP_SERVICE_API_RL"
+      ]
+    },
+    {
+      "name": "SERVICE_ADMIN_ROLE",
+      "description": "Service Administrator",
+      "role-template-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.VN_DS_ADMIN_RL",
+        "$XSAPPNAME.FP_DS_USER_RL",
+        "$XSAPPNAME.FP_DS_ADMIN_RL"
+      ]
+    },
+
+    {
+      "name": "SERVICE_USER_ROLE",
+      "description": "Internal User",
+      "role-template-references": [
+        "$XSAPPNAME.FP_DS_EVERYONE_RL",
+        "$XSAPPNAME.FP_DS_USER_RL"
+      ]
+    }
+  ]
+}
+
+

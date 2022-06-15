@@ -1,0 +1,74 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog title="{i18n>title_confidentiality_levels}">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto">
+			<l:content>
+				<f:SimpleForm id="updateConfidentialitySettingID"
+					minWidth="1024" maxContainerCols="2" editable="true"
+					layout="ResponsiveGridLayout" title="{i18n>title_confidentiality_levels}"
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+					columnsL="1" columnsM="1" class="editableForm">
+					<f:content>
+						<Label text="{i18n>lbl_confidentiality_level}" />
+						<ComboBox name="confidentialityLevel" id="confidentiality_level_combo" items="{cl>/result}"
+							selectionChange="onConfidentialityLevelChanged" selectedKey="{clevel>/level}"
+							enabled="{path:'clevel>/action', formatter:'.comboEditable'}">
+							<items>
+								<core:ListItem text="{cl>val}" key="{cl>key}" />
+							</items>
+						</ComboBox>
+
+						<Label text="{i18n>lbl_passcode_secured}" />
+						<Switch name="PassCodeSecure" id="passCodeSecure_switch" state="false"  change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+							customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+							<layoutData>
+								<l:GridData span="L2 M2 S4" />
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+
+
+						<Label text="{i18n>lbl_recursive_share}" />
+						<Switch name="AllowShare" state="false" id="allowShare_switch" change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+							customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+
+						<Label text="{i18n>lbl_limit_availability}" />
+						<Switch name="LimitAvailability" id="limitAvailability_switch" state="false" change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+							customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+
+						<Label text="{i18n>lbl_downloadable}" />
+						<Switch name="AllowDownload" id="allowDownload_switch" state="true" change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+							enabled="false" customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+
+						<Label text="{i18n>lbl_write_access}" />
+						<Switch name="AllowReadAndWrite" id="allowReadAndWrite_switch" state="false" change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+							customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</Switch>
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="{i18n>btn_action_save}" press="handleActionOnConfidentiality"
+				type="Accept" app:action="{clevel>/action}" />
+			<Button text="{i18n>btn_action_cancel}" press="onCloseConfidentialityDialog"
+				type="Error" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

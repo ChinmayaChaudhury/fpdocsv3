@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<List id="confidentialityLevelList" noDataText="{i18n>list_no_data}"
+		items="{clevels>/result}" mode="SingleSelect" select="onConfidentialityLevelItemEvent"
+		headerText="{i18n>title_confidentiality_levels}">
+		<items>
+
+			<ObjectListItem type="Active"
+				title="{path:'clevels>level', formatter: '.resolveConfidentialityLevel'}"
+				number="{path:'clevels>restrictions', formatter: '.enabledRestrictionCount'}" numberUnit="active restrictions"
+				activeIcon="sap-icon://locked"
+				icon="sap-icon://locked" numberState="Success" markLocked="true">
+				<attributes>
+					<ObjectAttribute
+						text="{path:'clevels>level',formatter: '.resolveConfidentialityLevelDesc'}"
+						active="false"  />
+				</attributes> 
+			</ObjectListItem>
+		</items>
+	</List>
+
+</core:FragmentDefinition>

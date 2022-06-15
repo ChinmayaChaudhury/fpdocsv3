@@ -1,0 +1,76 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page backgroundDesign="Standard" class="sapUiResponsiveContentPadding"
+		icon="sap-icon://message-information" navButtonPress="onPressBackButton"
+		showNavButton="true">
+		<customHeader />
+		<headerContent>
+			<Bar>
+				<contentMiddle>
+					<Label text="{documentRequest>/documentInfo}" width="100%" />
+				</contentMiddle>
+			</Bar>
+		</headerContent>
+		<content>
+			<Panel id="outboxRequestDetailPanel">
+				<content>
+					<ObjectHeader backgroundDesign="Transparent" icon="sap-icon://forward"
+						iconActive="false" intro="{documentRequest>/documentInfo}"
+						introActive="false" number="{documentRequest>/childCount}"
+						numberUnit="Documents" responsive="false" showMarkers="false"
+						showTitleSelector="false" title="{documentRequest>/documentName}"
+						titleActive="false">
+						<statuses>
+							<ObjectStatus text="{documentRequest>/createdBy}"
+								title="Created By" />
+						</statuses>
+						<attributes>
+							<ObjectAttribute text="{documentRequest>/documentSizeMB} MBs"
+								active="false" id="__attribute0" title="Document Size" />
+							<ObjectAttribute title="Create Date"
+								text="{path: 'documentRequest>/documentCreateDate', formatter: 'Formatter.date'}" active="false" 	/>
+							<ObjectAttribute title="Expiry Date"
+								text="{path: 'documentRequest>/expiryDate', formatter: 'Formatter.date'}"
+								active="false" />
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar backgroundDesign="Translucent">
+						<items> 
+							<IconTabFilter count="{path:'members>/result',formatter:'.arrayCount'}"
+								icon="sap-icon://group" iconColor="Neutral" showAll="false">
+								<content>
+									<List backgroundDesign="Transparent" headerText="Shared With"
+										items="{members>/result}" noDataText="No data">
+										<items>
+											<StandardListItem description="{members>lastName}"
+												info="{members>fairPriceEmail}" title="{members>firstName}" />
+										</items>
+									</List>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://permission"
+								iconColor="Critical">
+								<content>
+									<f:SimpleForm class="editableForm" columnsL="1"
+										columnsM="1" editable="true" emptySpanL="4" emptySpanM="4"
+										labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout"
+										maxContainerCols="2" minWidth="1024">
+										<f:content>
+											<core:Title text="Restrictions" />
+											<Label text="Limited Availability" />
+											<Switch enabled="false"
+												state="{path: 'documentRequest>/restriction', formatter: '.isLimitedAvailability'}" />
+											<Label text="Password Secured" />
+											<Switch enabled="false"
+												state="{path: 'documentRequest>/restriction', formatter: '.isPasscodeSecured'}" />
+										</f:content>
+									</f:SimpleForm>
+								</content>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

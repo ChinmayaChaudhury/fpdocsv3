@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel headerText="Available Documents"  id="documentListPanel">
+		<headerToolbar>
+			<Toolbar width="100%">
+				<content>
+					<Bar>
+						<contentLeft>
+							<Label text="{i18n>hdr_corp_doc_list}" width="100%" />
+						</contentLeft>
+						<contentRight>
+							<SearchField id="corporateDocumentShare" liveChange="onFilterRequest" placeholder="Search document" width="100%" />
+						</contentRight>
+					</Bar>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+		<content> 
+			<List noDataText="Drop list items here" id="documentList" items="{corp>/result}"
+				mode="MultiSelect" select="onDocumentItemSelectedEvent">
+				<items>
+					<StandardListItem app:documentID="{corp>openCmisID}"
+						app:parentID="{corp>openCmisParentID}" app:contentType="{corp>contentType}"
+						type="{path:'corp>contentType',formatter:'Formatter.listType'}"
+						title="{corp>documentName}" description="{corp>documentInfo}"
+						icon="{path: 'corp>contentType', formatter: 'Formatter.fileIcon'}"
+						infoState="Warning" info="{corp>documentInfo}" counter="{corp>childCount}"
+						count="{corp>childCount}" unread="true" activeIcon="sap-icon://message-information"
+						press="handleCorporateItemClickEvent" />
+				</items>
+			</List>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

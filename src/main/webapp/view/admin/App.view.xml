@@ -1,0 +1,6 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" displayBlock="true" controllerName="controller.admin.App">
+	<SplitApp xmlns="sap.m" id="adminApplicationID"
+		defaultTransitionNameDetail="slide" defaultTransitionNameMaster="slide"
+		busyIndicatorDelay="1000" mode="ShowHideMode" /> 
+</mvc:View> 

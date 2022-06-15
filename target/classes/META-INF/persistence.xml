@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="fpdocs">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<jta-data-source>java:/comp/env/jdbc/DatasourceOne</jta-data-source>
+		<class>com.ntuc.vendorservice.notificationservice.entity.ActivationNotificationRequest</class>
+		<class>com.ntuc.vendorservice.foundationcontext.catalog.entity.AuditEntity</class>
+		<class>com.ntuc.vendorservice.scimservice.entity.CWFApplicationGroup</class>
+		<class>com.ntuc.vendorservice.scimservice.entity.CWFCompositeAuthGroup</class>
+		<class>com.ntuc.vendorservice.scimservice.entity.CWFGroupToCompositeMapping</class>
+		<class>com.ntuc.vendorservice.scimservice.entity.CWFVendorUserGroupMapping</class>
+		<class>com.ntuc.vendorservice.scimservice.entity.ApplicationGroupsLookup</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.InternalUser</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.VendorAccount</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.VendorAccountAdministrator</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.FPUserToVendorSubscription</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.FairPriceUserGroup</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.ProspectVendorAccount</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.UserProfile</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.VendorAuthorizationGroups</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.VendorToAdminMapping</class>
+		<class>com.ntuc.vendorservice.vendoradminservice.entity.VendorUserGroup</class>
+		<class>com.ntuc.vendorservice.vendoraccountservice.entity.VendorUser</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
+		<properties>
+			<property name="eclipselink.logging.level" value="FINE"/>
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+			<!--Added by Pankaj as com.sap.persistence.platform.database.HDBPlatform deprecated in Web Profile 7 -->
+			<!-- <property name="eclipselink.target-database" value="com.sap.persistence.platform.database.HDBPlatform" /> -->
+			<property name="eclipselink.target-database" value="HANA"/>
+			<!--  End of change by Pankaj -->
+			<!--<property name="eclipselink.ddl-generation" value="create-or-extend-tables" /> -->
+			<!--<property name="eclipselink.ddl-generation" value="create-or-extend-tables" 
+				/> <property name="eclipselink.ddl-generation" value="drop-and-create-tables" 
+				/> -->
+		</properties>
+	</persistence-unit>
+</persistence>

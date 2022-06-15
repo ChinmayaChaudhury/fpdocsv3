@@ -1,0 +1,111 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="controller.admin.ManageSetup" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="manageSetupPage" navButtonPress="onNavBack"
+		showNavButton="{device>/isPhone}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>admin_mgtSetupTitle}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader" type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}"
+				select="onTabFocus" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter icon="sap-icon://action-settings"
+						app:tabName="setupTab" text="{i18n>lbl_quota_management}" iconColor="Positive"
+						id="setupTab">
+						<core:Fragment fragmentName="view.admin.SetupSettings"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabSeparator />
+					<IconTabFilter icon="sap-icon://locked" iconColor="Critical"
+						app:tabName="confidentialityTab" text="{i18n>lbl_confidentiality_level}"
+						id="confidentialityTab">
+						<core:Fragment fragmentName="view.admin.ConfidentialityList"
+							type="XML" />
+					</IconTabFilter>
+					<IconTabSeparator />
+					<IconTabFilter app:tabName="folderStructureTab" icon="sap-icon://folder"
+						text="{i18n>lbl_folder_structure}" id="folderStructureTab">
+						<content>
+							<core:Fragment fragmentName="view.admin.FolderStructure"
+								type="XML" />
+						</content>
+					</IconTabFilter>
+					<IconTabSeparator />
+					<IconTabFilter app:tabName="userGroupManagementTab"
+						icon="sap-icon://group" text="{i18n>lbl_user_group_management}"
+						id="fTab">
+						<content>
+							<core:Fragment fragmentName="view.admin.UserGroupList"
+								type="XML" />
+						</content>
+					</IconTabFilter>
+					<IconTabSeparator />
+					<IconTabFilter app:tabName="coorporateDocumentTab"
+						icon="sap-icon://official-service" text="{i18n>lbl_corp_doc_management}"
+						id="coorporateDocumentTab">
+						<content>
+							<core:Fragment fragmentName="view.admin.CoorporateDocumentList"
+								type="XML" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</content>
+
+		<footer>
+			<Toolbar width="100%">
+				<content>
+					<OverflowToolbar width="100%">
+						<content>
+							<Button activeIcon="sap-icon://slim-arrow-left" icon="sap-icon://slim-arrow-left"
+								iconFirst="true" id="navigate_back" press="onBackPress" text="Back"
+								type="Emphasized" visible="false" width="120px" />
+							<Button activeIcon="sap-icon://delete" icon="sap-icon://delete"
+								iconFirst="true" id="delete_corp_docs" press="handleDeleteCorporateContentEvent"
+								text="Delete" type="Error" visible="false" width="120px" />
+							<Button activeIcon="sap-icon://edit" icon="sap-icon://edit"
+								iconFirst="true" id="btn_edit_allocation" press="handleEditSelectedAllocation"
+								text="{i18n>btn_action_edit_allocation}" type="None" visible="false"
+								width="120px" />
+							<Button id="btn_create_allocation" press="onAllocationCreateRequest"
+								text="{i18n>btn_action_create_allocation}" type="Accept"
+								visible="false" />
+							<Button icon="sap-icon://add" id="btn_create_confidentiality"
+								press="handleCreateConfidentialityLevel" text="{i18n>btn_action_create_confidentiality}"
+								type="Emphasized" visible="false" />
+							<Button icon="sap-icon://edit" id="btn_edit_confidentiality"
+								press="handleEditConfidentialityLevel" text="{i18n>btn_action_edit}"
+								type="Emphasized" visible="false" />
+							<Button icon="sap-icon://add" id="btn_create_group" press="onCreateNewGroup"
+								text="{i18n>btn_action_create_group}" type="Emphasized" visible="false" />
+							<Button icon="sap-icon://edit" id="btn_edit_group" press="onEditGroupEvent"
+								text="{i18n>btn_action_edit}" type="Emphasized" visible="false" />
+							<Button icon="sap-icon://add" id="btn_create_folder"
+								press="handleCreateCorporateDocumentEvent" text="{i18n>btn_action_create_folder}"
+								type="Emphasized" visible="false" />
+							<Button icon="sap-icon://delete" id="btn_delete_content"
+								press="handleDeleteCorporateContentEvent" text="{i18n>btn_action_delete}"
+								type="Emphasized" visible="false" />
+							<Button icon="sap-icon://edit" id="btn_edit_content"
+								press="handleEditContentEvent" text="{i18n>btn_action_edit_folder}"
+								type="Default" visible="false" />
+							<Button icon="sap-icon://upload" id="btn_upload_content"
+								press="handleUploadItemClickEvent" text="{i18n>btn_action_upload}"
+								type="Default" visible="false" />
+						</content>
+					</OverflowToolbar>
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
+
+ 

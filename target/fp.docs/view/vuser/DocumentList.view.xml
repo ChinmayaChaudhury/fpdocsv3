@@ -1,0 +1,90 @@
+<core:View xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="controller.vuser.DocumentList">
+	<Page showSubHeader="true" id="documentListPage" title="Shared with me"
+		titleLevel="Auto" icon="sap-icon://list" showNavButton="false" >
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>hdr_inbox_doc}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader" type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<subHeader>
+			<Bar>
+				<contentRight>
+					<SearchField width="100%" placeholder="Search document"
+						id="sharedSearchInput" liveChange="onFilterRequest" />
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<Panel id="documentListPanel" headerText="Available Documents">
+				<customData>
+					<core:CustomData key="sap-ui-fastnavgroup" value="true"
+						writeToDom="true" id="__data2" />
+				</customData>
+				<content>
+					<List noDataText="Drop list items here" items="{inbox>/result}"
+						  id="inboxList" select="onItemSelectedEvent">
+						<items>
+						
+							<CustomListItem app:documentID="{inbox>openCmisID}"
+								press="onItemClickEvent" app:parentID="{inbox>openCmisParentID}"
+								app:contentType="{inbox>contentType}"
+								app:PassCodeSecure="{path: 'inbox>restriction', formatter: '.isPasscodeSecured'}"
+								showMarkers="true"
+								type="{path:'inbox>contentType',formatter:'Formatter.listType'}"
+								markLocked="{path: 'inbox>restriction', formatter: '.isPasscodeSecured'}">
+								<HBox>
+									<core:Icon class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
+										size="1.5rem"
+										src="{path: 'inbox>contentType', formatter: 'Formatter.fileIcon'}" />
+									<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+										<Label
+											text="Created on:{path: 'inbox>documentCreateDate',formatter: 'Formatter.date'}" />
+										<Text text="{inbox>documentName}" />
+									</VBox>
+									<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+										<Text
+											text="{path: 'inbox>childCount', formatter: '.formatCount'} Documents"
+											visible="{path:'inbox>contentType',formatter:'Formatter.showDocumentsCount'}" />
+										<core:Icon src="sap-icon://locked" size="0.9em"
+											visible="{path: 'inbox>restriction', formatter: '.isPasscodeSecured'}" />
+									</VBox>
+									<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+										<Label text="{path: 'inbox>expiryDate',formatter: 'Formatter.expireOn'}" />
+										<Text text="{parts: [{path:'inbox>ownedBy/firstName'},{path:'inbox>ownedBy/lastName'},{path:'inbox>ownedBy/vendorAccount'}], formatter: '.sharedBy'}" />
+									</VBox>
+									<items />
+								</HBox>
+							</CustomListItem> 
+						</items>
+					</List>
+				</content>
+			</Panel>
+		</content>
+		<footer>
+			<Toolbar width="100%" id="__toolbar0">
+				<customData>
+					<core:CustomData key="sap-ui-fastnavgroup" value="true"
+						writeToDom="true"   />
+				</customData>
+				<content>
+					<Button text="Back" width="120px" id="inbox_docs_back"
+						activeIcon="sap-icon://slim-arrow-left" icon="sap-icon://slim-arrow-left"
+						type="Emphasized" iconFirst="true" visible="false" press="onBackPress" />
+					<Button text="Upload" width="120px" id="shared_docs_upload"
+						activeIcon="sap-icon://upload" icon="sap-icon://upload" type="Emphasized"
+						iconFirst="false" visible="false" press="handleUpload" />
+					<Button text="Download" width="120px" id="btnDownload"
+						activeIcon="sap-icon://download" icon="sap-icon://download" type="Emphasized"
+						iconFirst="false" visible="false" press="handleDownload" />
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

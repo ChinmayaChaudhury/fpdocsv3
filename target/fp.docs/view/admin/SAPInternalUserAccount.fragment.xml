@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page title="{path:'user>/action',formatter:'.getFragmentTitle'}"
+		showNavButton="{device>/isPhone}" navButtonPress="onCancelUserModifyEvent"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<SearchField width="100%" placeholder="Search User By Email"
+				search="onUserSearch" />
+			<Panel expandable="true" expanded="true" headerText="User Basic Info">
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="Salutation" />
+							<ComboBox id="salutation_input" items="{salutation>/result}"
+								name="salutation" placeholder="Select Salutation" selectedKey="{user>/salutation}">
+								<items>
+									<core:ListItem key="{salutation>key}" text="{salutation>val}" />
+								</items>
+							</ComboBox>
+							<Label required="true" text="First Name" />
+							<Input id="firstName_input" name="firstName" placeholder="Enter User First Name"
+								width="100%" value="{user>/firstName}" />
+							<Label required="true" text="Last Name" />
+							<Input id="lastName_input" name="lastName" placeholder="Enter User Last Name"
+								width="100%" value="{user>/lastName}" />
+							<Label required="true" text="Display Name" />
+							<Input id="displayName_input" name="displayName"
+								placeholder="Enter DisplayName" width="100%" value="{user>/displayName}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+			<Panel expandable="true" expanded="true" headerText="Company Details">
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="{i18n>lbl_user_email}" /> 
+							<Input id="email_input" name="email" placeholder="Enter Email Address"
+								type="Email" width="100%" value="{user>/email}" />
+  
+							<Label id="userIDLabel" required="true" text="User ID" />
+							<Input fieldWidth="100%" id="userID_input" name="userID"
+								value="{user>/userID}" placeholder="Enter Vendor Admin UserID"
+								showSuggestion="true" width="100%" />
+							<Label text="{i18n>lbl_user_role}" />
+							<ComboBox id="userGroup_combo" items="{ug>/result}"
+								placeholder="{i18n>plh_users_group}" name="fairpriceUserGroupID"
+								selectedKey="{user>/fairpriceUserGroupID}">
+								<items>
+									<core:ListItem text="{ug>fairPriceUserGroupDesc}"
+										key="{ug>fairPriceGroupID}" />
+								</items>
+							</ComboBox>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

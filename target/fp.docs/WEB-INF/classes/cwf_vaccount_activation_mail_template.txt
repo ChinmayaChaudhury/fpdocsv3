@@ -1,0 +1,11 @@
+<p>Dear ${displayName},<br /> <br /> <br /> Welcome to NTUC FairPrice Collaborative Workflow System.<br /> <br /> You are receiving this e-mail because a new login ID: ${loginName}&nbsp;has been assigned to you.</p>
+<p>The new login ID will replace your current login ID: ${previousLoginName}. The password will remain unchanged.</p>
+<p>The new ID will come with administrative privileges. You may proceed to register users for your own</p>
+<p>company.</p>
+<p>Please click on the below link to access our system:${link}</p>
+<p>Please find attached the user guide for your reference.</p>
+<p>For Help Desk Support, please contact&nbsp;<a href="tel:%2B65%2068172938">+65 68172938</a>&nbsp; or email&nbsp;<a href="mailto:fpcwf_support@pracbiz.com">fpcwf_support@pracbiz.com</a></p>
+<p><br /> This is a system-generated message. Please do not reply.<br /> </p>
+<p><br /> Best Regards,</p>
+<p>FairPrice Collaborative Workflow Team</p>
+<p>&nbsp;</p>

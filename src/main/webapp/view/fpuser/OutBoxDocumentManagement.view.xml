@@ -1,0 +1,50 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="controller.fpuser.OutBoxDocumentManagement"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page showSubHeader="true" id="documentListPage" titleLevel="Auto"
+		icon="sap-icon://list" enableScrolling="true" navButtonPress="onNavBack"
+		showNavButton="true">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>hdr_outbox_doc}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader"
+						type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer>
+			<Toolbar width="100%">
+				<content>
+					<Button text="Back" width="120px" id="shared_docs_back"
+						activeIcon="sap-icon://slim-arrow-left" icon="sap-icon://slim-arrow-left"
+						type="Emphasized" iconFirst="true" visible="false" press="onBackPress" />
+					<Button text="Create" width="120px" id="btnNew" activeIcon="sap-icon://add"
+						icon="sap-icon://add" type="Emphasized" iconFirst="true" visible="true"
+						press="onCreateDocument" />
+					<Button text="Download" width="120px" id="btnDownload"
+						activeIcon="sap-icon://download" icon="sap-icon://download" type="Emphasized"
+						iconFirst="false" visible="false" press="handleDownload" />
+					<Button text="Upload" width="120px" id="btnUpload"
+						activeIcon="sap-icon://upload" icon="sap-icon://upload" type="Emphasized"
+						iconFirst="last" visible="false" press="handleUpload" />
+					<Button text="Participant" width="120px" id="btnAddParticipant"
+						activeIcon="sap-icon://add" icon="sap-icon://add" iconFirst="true"
+						visible="true" press="handleAddParticipant" />
+					<Button text="Details" width="120px" id="btnDetails"
+						activeIcon="sap-icon://message-information" icon="sap-icon://message-information"
+						type="None" iconFirst="false" visible="false" press="handleDetail" />
+					<Button text="Edit" width="120px" id="btnEdit" activeIcon="sap-icon://edit"
+						icon="sap-icon://edit"  iconFirst="false" visible="false"
+						press="handleEdit" />
+					<Button text="Delete" width="120px" id="btnDelete"
+						activeIcon="sap-icon://delete" icon="sap-icon://delete" type="Reject"
+						iconFirst="false" visible="false" press="handleDelete" />
+
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

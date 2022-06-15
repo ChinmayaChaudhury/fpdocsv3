@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page title="{path:'user>/action',formatter:'.getFragmentTitle'}"
+		showNavButton="{device>/isPhone}" navButtonPress="onCancelUserModifyEvent"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<Panel expandable="true" expanded="true" headerText="User Basic Info">
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="Salutation" />
+							<ComboBox id="salutation_input" items="{salutation>/result}"
+								name="salutation" placeholder="Select Salutation" selectedKey="{user>/salutation}">
+								<items>
+									<core:ListItem key="{salutation>key}" text="{salutation>val}" />
+								</items>
+							</ComboBox>
+							<Label required="true" text="First Name" />
+							<Input id="firstName_input" name="firstName" placeholder="Enter User First Name"
+								width="100%" value="{user>/firstName}" />
+							<!-- <Label required="true" text="Last Name" /> -->
+							<Input id="lastName_input" name="lastName" placeholder="Enter User Last Name"
+								width="100%" value="{user>/lastName}" />
+							<Label required="true" text="Display Name" />
+							<Input id="displayName_input" name="displayName"
+								placeholder="Enter DisplayName" width="100%" value="{user>/displayName}" />
+							<Label required="true" text="{i18n>lbl_vendor_admin_workno}" />
+							<Input id="workNo_input" name="work"
+								placeholder="Enter Work Phone No. prefix with Country Code" width="100%" value="{user>/work}" />
+
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+			<Panel expandable="true" expanded="true" headerText="Company Details">
+				<content>
+					<f:SimpleForm editable="false" layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="Vendor" />
+							<ComboBox id="vendorCode_combo" items="{prof>/account}"
+								selectedKey="{user>/vendorCode}" name="vendorCode" placeholder="{i18n>plh_vendor_code}">
+								<items>
+									<core:ListItem text="{prof>vendorCode}-{prof>vendorName}"
+										key="{prof>vendorCode}" />
+								</items>
+							</ComboBox>
+							<Label required="true" text="Job Title" />
+							<Input id="jobTitle_input" name="jobTitle" placeholder="Enter JobTitle"
+								width="100%" value="{user>/jobTitle}" />
+							<Input id="email_input" name="email" placeholder="Enter Email Address"
+								type="Email" width="100%" value="{user>/email}" />
+
+							<Label id="userIDLabel" required="true" text="User ID" />
+							<Input fieldWidth="100%" id="userID_input" name="userID"
+								value="{user>/userID}" placeholder="Enter UserID"
+								showSuggestion="true" width="100%" change="isSpecialCharacter"/>
+							<Input value="@{user>/vendorCode}" enabled="false"/> 
+							<Label text="{i18n>lbl_vuser_group}" />
+							<MultiComboBox id="userGroup_combo" items="{ug>/result}"
+								selectedKeys="{user>/vendorUserGroupID}" name="vendorUserGroupID"
+								placeholder="{i18n>plh_users_group_type}">
+								<items>
+									<core:ListItem text="{ug>vendorUserGroupDesc}"
+										key="{ug>vendorGroupID}" />
+								</items>
+							</MultiComboBox> 
+							<Input id="mobileNo_input" name="mobile"
+								placeholder="Enter Mobile No. prefix with Country Code" width="100%" value="{user>/mobile}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

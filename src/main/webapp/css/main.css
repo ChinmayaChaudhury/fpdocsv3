@@ -1,0 +1,86 @@
+@CHARSET "ISO-8859-1";
+
+.fpLaunchPadPageStyle {
+	background-color: #ffffff;
+}
+
+.fpLogoStyle {
+	margin: 30px 15px;
+	width: 14rem;
+}
+
+.sapMTCEditable .sapMTile {
+	background-color: #6eb43f;
+}
+
+.sapUiIcon {
+	color: #337ab7;
+}
+
+.sapMITBVertical>.sapMITBTab {
+	height: 3rem;
+	width: 7rem; 
+}
+.sapMITBFilter .sapMITBText {
+    color: #666666;
+    line-height: 0.9375rem;
+    overflow: hidden;
+    padding: 0.375rem 0 0;
+    position: relative; 
+    text-align: center;
+    text-shadow: 0 0.0625rem 0 rgba(255,255,255,0.7);
+    width: 7rem;
+}
+
+.cmmnstTextViewClass {
+	padding-top : 1em !important;
+}
+
+media only screen and (orientation : portrait ) {
+	.sapMGlobalBackgroundImage, .globalPageBackground {
+	background-image: url(../img/portrait/00_bg_P@2x.jpg);
+	background-size: 100% 100% !important;
+	height: 100% !important;
+	width: 100% !important;
+}
+
+}
+
+/***Android Tablet only****/
+@media all and (device-width: 1280px) and (device-height: 800px) and
+	(orientation:landscape) {
+	.sapMGlobalBackgroundImage, .globalPageBackground {
+		background-size: 100% 100% !important;
+		height: 100% !important;
+		width: 100% !important;
+	}
+}
+
+@media all and (device-width: 800px) and (device-height: 1280px) and
+	(orientation:portrait) {
+	.sapMGlobalBackgroundImage, .globalPageBackground {
+		background-size: 100% 100% !important;
+		height: 100% !important;
+		width: 100% !important;
+	}
+}
+
+/*Ipad Only**/
+@media only screen and (device-width: 768px) and (device-height: 1024px)
+	and (orientation : portrait) {
+	.sapMBar.sapMPageHeader {
+		padding-top: 1.5% !important;
+	}
+}
+
+/* @media all and (device-width: 1024px) and (device-height: 768px) and (orientation: landscape) {
+	.sapMBar.sapMPageHeader{
+		padding-top:1.5% !important;
+	}
+} */
+@media all and (device-width: 768px) and (device-height: 1024px) and
+	(orientation:landscape) {
+	.sapMBar.sapMPageHeader {
+		padding-top: 1.5% !important;
+	}
+}

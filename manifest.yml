@@ -1,0 +1,44 @@
+applications:
+  - name: fp-docs
+    path: ./target/fp.docs.war
+    routes:
+      - route: fp-docs-((id)).((domain))
+    services:
+      - xsuaa-fpdocs-security
+      - fp-doc-connectivity
+      - HDI_DOCMNTSVC
+      - fp-doc-destination
+    memory: 2000M
+    buildpacks:
+       - https://bitbucket.org/onesapretail/sap_java_buildpack_1_49.git
+    env:
+      SAP_JWT_TRUST_ACL: >
+        [
+          {"clientid":"*", "identityzone":"*"}
+        ]
+      TARGET_RUNTIME: 'tomee7'
+      JBP_CONFIG_TOMEE7: "['tomee7':{'app_context_root': '/fp.docs'}]"
+      JBP_CONFIG_RESOURCE_CONFIGURATION: "['tomee7/webapps/ROOT/WEB-INF/resources.xml':{'datasourceHana' : 'HDI_DOCMNTSVC'}]"
+      SET_LOGGING_LEVEL: '{sap.xs.console: TRACE, com.sap.xs2: INFO, com.sap.xs2.auditlog.v2.AuditLogV2Servlet: TRACE,com.ntuc.vendorservice:INFO,com.ntuc.vendorservice:WARN, 
+         com.sap.cloud.security: DEBUG, com.sap.xs.security: DEBUG, OpenEJB: ERROR, OpenEJB: DEBUG, OpenEJB: TRACE, OpenEJB: INFO, OpenEJB.startup: TRACE,OpenEJB.startup: DEBUG, OpenEJB.startup: ERROR,
+         OpenEJB.startup.service: WARN, OpenEJB.startup.service: ERROR,OpenEJB.startup.service: INFO,OpenEJB.startup.config: WARN,OpenEJB.startup.config: ERROR, OpenEJB.startup.config: INFO, org.apache.webbeans: INFO, org.apache.webbeans: ERROR, org.apache.webbeans: TRACE}'
+      JBP_CONFIG_SAPJVM_MEMORY_SIZES: 'metaspace:128m..'
+      IAS_XSUAA_XCHANGE_ENABLED: true
+  #Router service for the backend apis
+  - name: approuter-fp-docs
+    path: ./approuter
+    buildpacks:
+      - nodejs_buildpack
+    memory: 128M
+    routes:
+      - route: ui-fp-docs-((id)).((domain))
+    services:
+      - xsuaa-fpdocs-security
+    env:
+      destinations: >
+        [
+          {"name":"fp-docs-srv-backend",
+           "url":"https://fp-docs-((id)).((domain))",
+           "forwardAuthToken": true
+          }
+        ]

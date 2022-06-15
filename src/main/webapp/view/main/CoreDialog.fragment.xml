@@ -1,0 +1,61 @@
+<Dialog xmlns="sap.m"
+	id="id"
+	busy="false"
+	busyIndicatorDelay="1000"
+	visible="true"
+	fieldGroupIds=""
+	icon=""
+	title=""
+	showHeader="true"
+	type="Standard"
+	state="None"
+	stretchOnPhone="false"
+	stretch="false"
+	contentWidth=""
+	contentHeight=""
+	horizontalScrolling="true"
+	verticalScrolling="true"
+	resizable="false"
+	draggable="false"
+	leftButton=""
+	rightButton=""
+	initialFocus=""
+	ariaDescribedBy=""
+	validateFieldGroup=""
+	beforeOpen=""
+	afterOpen=""
+	beforeClose=""
+	afterClose="">
+		<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+		<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+		<content></content> <!-- sap.ui.core.Control -->
+		<subHeader></subHeader> <!-- sap.m.IBar, since 1.12.2 -->
+		<customHeader></customHeader> <!-- sap.m.IBar, since 1.15.1 -->
+		<beginButton></beginButton> <!-- sap.m.Button, since 1.15.1 -->
+		<endButton></endButton> <!-- sap.m.Button, since 1.15.1 -->
+		<buttons> <!-- sap.m.Button, since 1.21.1 -->
+			<Button xmlns="sap.m"
+				id="id1"
+				busy="false"
+				busyIndicatorDelay="1000"
+				visible="true"
+				fieldGroupIds=""
+				text=""
+				type="Default"
+				width=""
+				enabled="true"
+				icon=""
+				iconFirst="true"
+				activeIcon=""
+				iconDensityAware="true"
+				textDirection="Inherit"
+				ariaDescribedBy=""
+				ariaLabelledBy=""
+				validateFieldGroup=""
+				tap=""
+				press="">
+					<tooltip></tooltip> <!-- sap.ui.core.TooltipBase -->
+					<dependents></dependents> <!-- sap.ui.core.Control, since 1.19 -->
+			</Button>
+		</buttons>
+</Dialog>

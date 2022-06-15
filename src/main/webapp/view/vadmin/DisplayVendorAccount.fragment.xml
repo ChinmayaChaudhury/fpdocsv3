@@ -1,0 +1,57 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<l:Grid defaultSpan="L12 M12 S12" width="auto">
+		<l:content>
+			<f:SimpleForm id="displayVendor" minWidth="1024"
+				maxContainerCols="2" editable="false" layout="ResponsiveGridLayout"
+				title="{i18n>title_display_vendor_account}" labelSpanL="3"
+				labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+				<f:content>
+					<Label text="{i18n>lbl_sap_vendor_code}" />
+					<Text text="{va>/vendorCode}" />
+					<Label text="{i18n>lbl_vendor_name}" />
+					<Text text="{va>/vendorName}" />
+					<Label text="{i18n>lbl_vendor_email}" />
+					<Text text="{va>/vendorAdminEmail}" />
+					<Label text="{i18n>lbl_login_service_id}" />
+					<Text text="{prof>/loginName}" />
+					<Label text="{i18n>lbl_account_category}" />
+					<Text
+						text="{parts: [{path:'va>/vendorCategory'},{path:'vac>/vendorCategory'}], formatter: 'Formatter.vendorCategoryName'}" />
+					<Label text="{i18n>lbl_user_vendor_verified}" />
+					<Switch enabled="false" state="{va>/accountValidated}"
+						change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+						customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+					<Label text="{i18n>lbl_validate_email}" />
+					<Switch enabled="false" state="{va>/validateEmailDomain}"
+						change="handleSwitch" customTextOn="{i18n>lbl_account_verified}"
+						customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+					<Input editable="false" visible="{va>/validateEmailDomain}"
+						value="{va>/vendorEmailDomain}" placeholder="*@vendor.com">
+						<layoutData>
+							<l:GridData span="L2 M2 S4" />
+						</layoutData>
+					</Input>
+					<Label text="{i18n>lbl_allocated_quota}" />
+					<Input value="{va>/allocatedQuota} MBs" enabled="false" />
+					<Label text="{i18n>lbl_utilized_quota}" />
+					<ProgressIndicator displayValue="{va>/quotaUtilization}%"
+						percentValue="{va>/quotaUtilization}" showValue="true"
+						state="{path:'va>/quotaUtilization',formatter: 'Formatter.showUtilizationState'}"
+						width="80%" class="sapUiSmallMarginBottom" />
+					<Button text="{i18n>btn_release_quota}" icon="sap-icon://delete"
+						press="releaseMoreSpace" type="Transparent" width="20px"
+						visible="{path:'va>/quotaUtilization',formatter: 'Formatter.showSpaceRecycler'}" />
+				</f:content>
+			</f:SimpleForm>
+		</l:content>
+	</l:Grid>
+</core:FragmentDefinition>

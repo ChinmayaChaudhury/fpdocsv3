@@ -1,0 +1,31 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page class="sapUiResponsiveContentPadding" id="vendorListPage">
+		<content>
+			<List growing="true" growingScrollToLoad="false"
+				growingThreshold="5" id="vendorList" includeItemInSelection="true"
+				items="{vendors>/result}" mode="SingleSelect" noDataText="{i18n>list_no_data}"
+				select="onItemSelectEvent">
+				<ObjectListItem intro="Vendor Code:{vendors>vendorCode}"
+					number="{vendors>allocatedQuota}" numberUnit="{i18n>quota_allocation_unit}"
+					press="onListItemPress" showMarker="true" title="{vendors>vendorName}"
+					type="Navigation">
+					<attributes>
+						<ObjectAttribute active="false"
+							text="AdminEmail: {vendors>vendorAdminEmail}" />
+					</attributes>
+					<firstStatus>
+						<ObjectStatus
+							state="{ path: 'vendors>accountValidated', formatter: 'Formatter.status' }"
+							text="{path: 'vendors>accountValidated', formatter: 'Formatter.resolveAccountVerification'}" />
+					</firstStatus>
+				</ObjectListItem>
+				<headerToolbar></headerToolbar>
+			</List>
+		</content>
+		<headerContent>
+			<SearchField liveChange="onFilterRequest" placeholder="Search Vendor by Vendor Name, Vendor Code or Email"
+				search="handleSearch" width="100%" />
+		</headerContent>
+	</Page>
+</core:FragmentDefinition>

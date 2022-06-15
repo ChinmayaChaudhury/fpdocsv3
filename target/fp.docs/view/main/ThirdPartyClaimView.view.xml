@@ -1,0 +1,82 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	id="mainView" xmlns="sap.m" controllerName="controller.main.ThirdPartyClaimView"
+	xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" busy="false"
+	busyIndicatorDelay="1000" visible="true" width="100%" displayBlock="false">
+	<Page showHeader="false" class="launchPadPageStyle" showNavButton="true"
+			navButtonPress="onNavBack">
+	<Panel expandable="true" expanded="true" headerText="{i18n>mro_order_frm_panel_header}">
+        <content>
+          <ScrollContainer>
+            <l:HorizontalLayout class="sapUiContentPadding">
+              <f:SimpleForm id="mroDetailForm"
+				        minWidth="1024"
+				        maxContainerCols="2"
+				        editable="true"
+				        layout="ResponsiveGridLayout"
+				        labelSpanL="4"
+                labelSpanM="4"
+                imageSpanL="2"
+                imageSpanM="2"
+				        emptySpanL="0"
+				        emptySpanM="0"
+				        columnsL="2"
+				        columnsM="2"
+				        class="editableForm">
+                <f:content>
+                  <!-- Current reading-->
+                  <Label text="{i18n>mro_current_reading}" />
+                  <Input  id="input_current_reading"/>
+                  <!-- Reading type-->
+                  <Label text="{i18n>mro_reading_type}" />
+                  <Select width="100%" id="input_reading_type" items="{
+						            path: '/types',
+						            sorter: { path: 'key' }
+					           }">
+                    <core:Item key="{key}" text="{val}" />
+                    
+                  </Select>
+                  <!-- Reading reason-->
+                  <Label text="{i18n>mro_reading_reason}" />
+                  <Select width="100%" id="input_reading_reason" items="{
+						            path: '/reasons',
+						            sorter: { path: 'key' }
+					           }"> 
+                      <core:Item key="{key}" text="{val}" />  
+                  </Select>
+                  <!-- Reading notes-->
+                  <Label text="{i18n>mro_reading_notes}" />
+                  <Input id="input_reading_notes" />
+                </f:content>
+              </f:SimpleForm>
+
+
+              <l:VerticalLayout class="sapUiSmallMargin" > 
+                <l:HorizontalLayout>
+                  <Label text="{i18n>mro_capture_image}" />
+                  <Switch state="false" change="handleSwitch" customTextOn="{i18n>mro_yes_capture_image}" customTextOff="{i18n>mro_no_capture_image}"  class="cojUiMediumMargin" >
+                    <layoutData>
+                      <FlexItemData growFactor="1" />
+                    </layoutData>
+                  </Switch>
+                </l:HorizontalLayout>
+                <Panel id="input_mro_camera_control" visible="false">
+                  <Label text="{i18n>mro_read_notes}" />
+                  <!-- Input result -->
+                  <Input id="image_capture_input" busy="false"
+                                         busyIndicatorDelay="1000" visible="true"
+                                         enabled="true" placeholder="{i18n>mro_read_note}"
+                                         editable="true">
+                  </Input> 
+                  <Button icon="sap-icon://camera" text="{18n>mro_capture_new}" type="Accept" press="onCameraRequest" />
+                  <Carousel class="sapUiContentPadding" height="300px" width="350px" loop="true" id="image_target_add_carousel">
+                    <pages></pages>
+                  </Carousel>
+                </Panel > 
+              </l:VerticalLayout> 
+            </l:HorizontalLayout>
+          </ScrollContainer>
+        </content>
+      </Panel>
+	</Page> 
+</mvc:View>

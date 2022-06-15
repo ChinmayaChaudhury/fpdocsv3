@@ -1,0 +1,124 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m">
+	<Page title="{path:'vendor>/action',formatter:'.getFragmentTitle'}"
+		id="sciVendorAccountCreate" showNavButton="{device>/isPhone}"
+		navButtonPress="onCancelVendorModifyEvent" class="sapUiResponsiveContentPadding">
+		<content>
+			<SearchField width="100%" placeholder="Search User By Email"
+				search="onUserSearch" />
+			<Panel expandable="true" expanded= "true" headerText="User Basic Info">
+				<content>
+					<f:SimpleForm layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="Salutation" />
+							<ComboBox id="salutation_input" items="{salutation>/result}"
+								name="salutation" placeholder="Select Salutation" selectedKey="{vendor>/salutation}"
+								enabled="{path:'vendor>/salutation',formatter:'.isEnabled'}">
+								<items>
+									<core:ListItem key="{salutation>key}" text="{salutation>val}" />
+								</items>
+							</ComboBox>
+
+							<Label required="true" text="Name" />
+							<Input id="firstName_input" name="firstName"
+								enabled="{path:'vendor>/firstName',formatter:'.isEnabled'}"
+								value="{vendor>/firstName}" placeholder="Enter User First Name"
+								width="100%" />
+							<!-- <Label required="true" text="Last Name" /> -->
+							<Input id="lastName_input" name="lastName" placeholder="Enter User Last Name"
+								enabled="{path:'vendor>/lastName',formatter:'.isEnabled'}"
+								width="100%" value="{vendor>/lastName}" />
+							<Label required="true" text="Display Name" />
+							<Input id="displayName_input" name="displayName"
+								enabled="{path:'vendor>/displayName',formatter:'.isEnabled'}"
+								placeholder="Enter DisplayName" width="100%" value="{vendor>/displayName}" />
+							<Label required="true" text="{i18n>lbl_vendor_admin_workno}" />
+							<Input id="workNo_input" name="work"
+								placeholder="Enter Work Phone No. prefix with Country Code" width="100%" value="{vendor>/work}" />
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+			<Panel expandable="true" expanded="true" headerText="Company Details">
+				<content>
+					<f:SimpleForm layout="ResponsiveGridLayout">
+						<f:content>
+							<Label required="true" text="Job Title" />
+							<Input id="jobTitle_input" name="jobTitle" placeholder="Enter JobTitle"
+								value="{vendor>/jobTitle}" enabled="{path:'vendor>/jobTitle',formatter:'.isEnabled'}"
+								width="100%" />
+							<Input id="email_input" name="email"
+								enabled="{path:'vendor>/email',formatter:'.isEnabled'}"
+								placeholder="Enter Email Address" type="Email" width="100%" />
+
+							<Label id="userIDLabel" required="true" text="User ID" />
+							<Input fieldWidth="100%" id="userID_input" name="userID"
+								value="{vendor>/userID}" enabled="{path:'vendor>/userID',formatter:'.isEnabled'}"
+								placeholder="Enter Vendor Admin UserID as admin@xxxxx" showSuggestion="true"
+								change="onChangePopulateVendorList" width="100%" />
+
+							<Label required="true" text="{i18n>lbl_vendor_code}" />
+							<Input id="vendorCode_input" name="vendorCode" required="true" 
+								value="{vendor>/vendorCode}" width="100%" placeholder="Enter Vendor Code"/>
+
+							<Label required="true" text="Vendor Name" />
+							<Input id="companyName_input" name="companyName"
+								placeholder="Enter Vendor Name" width="100%" value="{vendor>/companyName}"
+								change="onChangePopulateVendorList" enabled="{path:'vendor>/companyName',formatter:'.isEnabled'}" />
+							<Input id="mobileNo_input" name="mobile"
+								placeholder="Enter Mobile No. prefix with Country Code" width="100%" value="{vendor>/mobile}" />
+
+							<Label text="{i18n>lbl_vendor_category}" />
+							<ComboBox id="vendorCategory_combo" items="{vc>/result}"
+								name="vendorCategory" placeholder="{i18n>plh_users_group}"
+								selectedKey="{vendor>/vendorCategory}"
+								enabled="{path:'vendor>/vendorCategory',formatter:'.isEnabled'}">
+								<items>
+									<core:ListItem key="{vc>key}" text="{vc>val}" />
+								</items>
+							</ComboBox>
+
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel>
+			<Panel expandable="true" expanded="false" headerText="Additional Vendors">
+				<content>
+					<f:SimpleForm layout="ResponsiveGridLayout">
+						<f:content>
+							<Table id="idAddVendorTable" inset="false"
+								items="{vendor>/addVendorsList}">
+								<headerToolbar>
+									<Toolbar>
+										<Button icon="sap-icon://add" press="addVendors" type="Transparent" />
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column>
+										<Text text="Vendor Code" />
+									</Column>
+									<Column demandPopin="true" minScreenWidth="Tablet">
+										<Text text="Vendor Name" />
+									</Column>
+									<Column demandPopin="true" minScreenWidth="Tablet">
+										<Text text="" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Input enabled="{vendor>isEntryEnabled}" value="{vendor>vendorCode}" change = "checkPattern"/>
+											<Input enabled="{vendor>isEntryEnabled}"  value="{vendor>vendorName}" />
+											<Button visible="{vendor>isEntryEnabled}" icon="sap-icon://delete" press="onPressDelete"
+												text="" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+			</Panel> 
+		</content>
+	</Page>
+</core:FragmentDefinition>

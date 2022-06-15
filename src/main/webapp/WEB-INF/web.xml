@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://java.sun.com/xml/ns/javaee"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+		 id="WebApp_ID" version="3.0">
+
+	<display-name>fp.docs</display-name>
+	<context-param>
+		<param-name>MailDestinationName</param-name>
+		<param-value>Smtp_Destination</param-value>
+	</context-param>
+	<!-- <context-param>
+		<param-name>MailDestinationName</param-name>
+		<param-value>Smtp_Destination_Gmail</param-value>
+	</context-param>-->
+
+	<context-param>
+		<param-name>MailDestinationLocation</param-name>
+		<param-value>Smtp_Location</param-value>
+	</context-param>
+	<context-param>
+		<param-name>VendorDocumentsEndUser</param-name>
+		<param-value>VN_ITEM_CRT_GRP</param-value>
+	</context-param>
+	<context-param>
+		<param-name>VendorDocumentsAdministrator</param-name>
+		<param-value>VN_ADMIN_GRP</param-value>
+	</context-param>
+	<context-param>
+		<param-name>InternalDocumentsAdministrator</param-name>
+		<param-value>FP_DS_ADMIN_GRP</param-value>
+	</context-param>
+	<context-param>
+		<param-name>InternalDocumentsEndUser</param-name>
+		<param-value>FP_DS_USER_GRP</param-value>
+	</context-param>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>XSUAA</auth-method>
+	</login-config>
+	<resource-ref>
+		<res-ref-name>mail/Session</res-ref-name>
+		<res-type>javax.mail.Session</res-type>
+	</resource-ref>
+
+	<security-role>
+		<description>Every Other user</description>
+		<role-name>Everyone</role-name>
+	</security-role>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Vendor Document Share</web-resource-name>
+			<url-pattern>/vuser/*</url-pattern>
+			<url-pattern>/upload/*</url-pattern>
+			<url-pattern>/controller/vuser/*</url-pattern>
+			<url-pattern>/view/vuser/*</url-pattern>
+			<url-pattern>/view/all/*</url-pattern>
+			<url-pattern>/components/vuser/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>VN_DS_USER_RL</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Vendor Admin Document Share</web-resource-name>
+			<url-pattern>/vadmin/*</url-pattern>
+			<url-pattern>/controller/vadmin/*</url-pattern>
+			<url-pattern>/view/vadmin/*</url-pattern>
+			<url-pattern>/view/all/*</url-pattern>
+			<url-pattern>/components/vadmin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>VN_DS_ADMIN_RL</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Vendor Document Share</web-resource-name>
+			<url-pattern>/fpadmin/*</url-pattern>
+			<url-pattern>/upload/*</url-pattern>
+			<url-pattern>/controller/admin/*</url-pattern>
+			<url-pattern>/view/admin/*</url-pattern>
+			<url-pattern>/view/all/*</url-pattern>
+			<url-pattern>/components/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>FP_DS_ADMIN_RL</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>FairPrice Document Share</web-resource-name>
+			<url-pattern>/fpuser/*</url-pattern>
+			<url-pattern>/upload/*</url-pattern>
+			<url-pattern>/controller/fpuser/*</url-pattern>
+			<url-pattern>/view/all/*</url-pattern>
+			<url-pattern>/view/fpuser/*</url-pattern>
+			<url-pattern>/components/fpuser/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>FP_DS_USER_RL</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/css/*</url-pattern>
+			<url-pattern>/util/*</url-pattern>
+			<url-pattern>/img/*</url-pattern>
+			<url-pattern>/connect/*</url-pattern>
+			<url-pattern>/send/*</url-pattern>
+			<url-pattern>/vuser/validate</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>FP_DS_EVERYONE_RL</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Integration Service Area</web-resource-name>
+			<url-pattern>/mail/*</url-pattern>
+			<url-pattern>/scim/attr/*</url-pattern>
+			<url-pattern>/fpadmin/account/*</url-pattern>
+			<url-pattern>/bpm/docs/*</url-pattern>
+			<url-pattern>/prospect/*</url-pattern>
+			<url-pattern>/umgroup/*</url-pattern>
+			<url-pattern>/vuser/validate</url-pattern>
+		</web-resource-collection>
+
+		<!-- for production environment the constraint needs to be in place -->
+		<!--<auth-constraint>
+			<role-name>FP_SERVICE_API_RL</role-name>
+		</auth-constraint> -->
+	</security-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Public Area</web-resource-name>
+			<url-pattern>/</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
+</web-app>

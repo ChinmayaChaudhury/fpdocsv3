@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Panel class="sapUiResponsiveContentPadding" id="documentListPanel">
+		<content>
+			<List noDataText="Drop list items here" id="documentList" items="{outbox>/result}" mode="SingleSelect" select="onItemSelectedEvent">
+				<items>
+					<CustomListItem app:documentID="{outbox>openCmisID}" press="onItemClickEvent" app:parentID="{outbox>openCmisParentID}"
+						app:contentType="{outbox>contentType}" showMarkers="true" type="{path:'outbox>contentType',formatter:'Formatter.listType'}"
+						markLocked="{path: 'outbox>restriction', formatter: '.isPasscodeSecured'}">
+						<HBox>
+							<core:Icon class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" size="1.5rem"
+								src="{path: 'outbox>contentType', formatter: 'Formatter.fileIcon'}"/>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+								<Label text="Created on:{path: 'outbox>documentCreateDate',formatter: 'Formatter.date'}"/>
+								<Text text="{outbox>documentName}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+								<Text text="{path: 'outbox>childCount', formatter: '.formatCount'} Documents"
+									visible="{path:'outbox>contentType',formatter:'Formatter.showDocumentsCount'}"/>
+								<core:Icon src="sap-icon://locked" size="0.9em" visible="{path:'outbox>restriction', formatter: '.isPasscodeSecured'}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+								<Label text="{outbox>ownedBy/firstName} {outbox>ownedBy/lastName}"/>
+								<Label text="{path: 'outbox>expiryDate',formatter: 'Formatter.expireOn'}"/>
+							</VBox>
+							<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+								<Text text="{path: 'outbox>requestStatus',formatter:'.resolveDraftState'}"/>
+							</VBox>
+							<items/>
+						</HBox>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<headerToolbar>
+			<Toolbar width="100%">
+				<content>
+					<Bar>
+						<contentRight>
+							<SearchField liveChange="onFilterRequest" id="sharedSearchInput" placeholder="Search Documents" search="handleSearch" width="100%"/>
+						</contentRight>
+					</Bar>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+	</Panel>
+</core:FragmentDefinition>

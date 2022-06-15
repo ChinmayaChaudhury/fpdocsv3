@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.ui.layout.form" class="viewPadding">
+	<Dialog title="{path:'req>/action',formatter:'.folderCorporateDialogTitle'}">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto">
+			<l:content>
+				<f:SimpleForm id="folderID" minWidth="1024"
+					maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+					columnsL="1" columnsM="1" class="editableForm">
+					<f:content>
+						<Label text="{i18n>lbl_folder_name}" />
+						<Input name="documentName" id="folder_Name" value="{req>/documentName}"/> 
+						
+						<Label text="{i18n>lbl_folder_desc}" />
+						<Input name="documentInfo" id="folder_desc" value="{req>/documentInfo}"/> 
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="{i18n>btn_action_save}" press="onSaveFolderDetailEvent"
+				type="Accept"  app:action="{req>/action}" />
+			<Button text="{i18n>btn_action_cancel}" press="onCreateFolderDialogClose"
+				type="Error" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

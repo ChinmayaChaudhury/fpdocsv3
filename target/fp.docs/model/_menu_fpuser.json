@@ -1,0 +1,25 @@
+{
+	"menu": 
+	[
+		{
+			"menu_display": "Supplier Kit",
+			"menu_info": "Maintain the FP Vendor accounts commissioning and de-commissioning",
+			"menu_action": "corp_document",
+			"menu_icon": "official-service"
+		},
+
+		{
+			"menu_display": "Inbox",
+			"menu_info": " Maintain the FP internal users commissioning and de-commissioning",
+			"menu_action": "inbound_share",
+			"menu_icon": "document"
+		},
+
+		{
+			"menu_display": "Outbox",
+			"menu_info": " Maintain the FP internal users commissioning and de-commissioning",
+			"menu_action": "outbound_share",
+			"menu_icon": "customer-view"
+		}
+	]
+}

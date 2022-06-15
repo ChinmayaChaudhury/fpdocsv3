@@ -1,0 +1,3 @@
+---
+tomee7/webapps/ROOT/WEB-INF/resources.xml:
+  datasourceHana: HDI_DOCMNTSVC

@@ -1,0 +1,18 @@
+Dear ${displayname}, 
+
+${fromuser} has shared the documents folder '${folderName}' with you.
+
+To open the folder, 
+1. Login to FairPrice document service on the link below, 
+   ${documentShareLink}
+2. Select Inbox menu on the left panel, 
+3. Click on the '${folderName}' entry item to access
+
+${passcodeNarrative}
+
+Kindly note the document is available up until ${expiryDate}.
+
+Thank you!
+
+Kind Regards,
+FairPrice Document Share Team

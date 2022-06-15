@@ -1,0 +1,4 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+		displayBlock="true" controllerName="controller.fpuser.App" >
+	<SplitApp xmlns="sap.m" id="applicationID"/>
+</mvc:View> 

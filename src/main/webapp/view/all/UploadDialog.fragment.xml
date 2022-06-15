@@ -1,0 +1,33 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	class="viewPadding">
+	<Dialog title="{i18n>hdr_file_upload}">
+		<l:VerticalLayout>
+			<u:FileUploader id="docShareFileUploader" name="fileUploader"
+				uploadUrl="upload/" width="400px" tooltip="Upload your file to the local server"
+				uploadComplete="handleUploadComplete" style="Emphasized" sendXHR="true"
+				placeholder="Choose a file for Upload...">
+				<u:parameters>
+					<u:FileUploaderParameter name="openCmisID"
+						value="{req>/openCmisID}" />
+					<u:FileUploaderParameter name="expiryTenure"
+						value="{req>/expiryTenure}" />
+					<u:FileUploaderParameter name="documentShareRequestID"
+						value="{req>/documentShareRequestID}" />
+					<u:FileUploaderParameter name="vendorID"
+						value="{req>/vendorID}" />
+					<u:FileUploaderParameter name="documentShareDesc"
+						value="{req>/documentShareDesc}" />
+				</u:parameters>
+			</u:FileUploader> 
+			<Input name="availabilityTenure" value="{req>/expiryTenure}"
+				id="availability_input" placeholder="Limit Availability" visible="{req>/showTenureInput}"
+				maxLength="2" type="Number" />
+			<Button text="Upload File" press="handleUploadPress" />
+		</l:VerticalLayout>
+		<beginButton>
+			<Button text="{i18n>btn_action_cancel}" press="onCloseDialog"
+				type="Error" />
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

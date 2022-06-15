@@ -1,0 +1,44 @@
+<core:FragmentDefinition xmlns="sap.m"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:core="sap.ui.core">
+	<Panel expandable="true" expanded="true"
+		headerText="{i18n>lbl_fpusers_group_panel_header}">
+		<content>
+			<ScrollContainer>
+				<List noDataText="Drop list items here" items="{fug>/result}" id="fairPriceUserGroupList"
+					mode="SingleSelect" select="onItemGroupSelectedEvent" headerText="{i18n>lbl_users_group_name}">
+					<items>
+						<StandardListItem
+							app:group="fairprice"
+							type="{path:'inbound>contentType',formatter:'Formatter.listType'}"
+							title="{fug>fairPriceUserGroupName}" description="{fug>fairPriceUserGroupDesc}"
+							icon="sap-icon://group" infoState="Warning" info="{inbound>documentInfo}"
+							counter="{ path: 'fug>users',  formatter: 'Formatter.count'}"
+							unread="true" activeIcon="sap-icon://message-information" press="onItemClickEvent" />
+
+					</items>
+				</List>
+			</ScrollContainer>
+		</content>
+	</Panel>
+	<Panel expandable="true" expanded="false"
+		headerText="{i18n>lbl_vusers_group_panel_header}">
+		<content>
+			<ScrollContainer>
+				<List noDataText="Drop list items here" items="{vug>/result}" id="vendorUserGroupList"
+					 headerText="{i18n>lbl_users_group_name}">
+					<items>
+						<StandardListItem
+							app:group="vendor"
+							type="{path:'inbound>contentType',formatter:'Formatter.listType'}"
+							title="{vug>vendorUserGroupName}" description="{vug>vendorUserGroupDesc}"
+							icon="sap-icon://group" infoState="Warning" info="{inbound>documentInfo}"
+							counter="{ path: 'vug>users',  formatter: 'Formatter.count'}"
+							unread="true" activeIcon="sap-icon://message-information" press="onItemClickEvent" />
+
+					</items>
+				</List>
+			</ScrollContainer>
+		</content>
+	</Panel> 
+</core:FragmentDefinition>

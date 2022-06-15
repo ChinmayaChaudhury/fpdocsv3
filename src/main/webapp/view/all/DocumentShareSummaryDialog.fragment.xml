@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	class="viewPadding">
+	<Dialog title="{i18n>hdr_confirm_release}">
+		<l:VerticalLayout>
+			<Text text="Please confirm the details are okay before you submit" />
+		</l:VerticalLayout>
+		<beginButton>
+			<Button text="{i18n>btn_action_cancel}" press="closeDialogSummary"
+				type="Neutral" />
+		</beginButton>
+		<endButton>
+			<Button text="{i18n>btn_action_submit}" press="submitConfirmedDocumentRequest"
+				type="Accept" />
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

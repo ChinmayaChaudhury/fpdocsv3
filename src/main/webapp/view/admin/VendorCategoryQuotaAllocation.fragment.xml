@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:f="sap.ui.layout.form" class="viewPadding">
+	<Dialog title="{i18n>title_quota_allocation}">
+		<l:Grid defaultSpan="L12 M12 S12" width="auto">
+			<l:content>
+				<f:SimpleForm id="setupSettingsID" minWidth="1024"
+					maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+					labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+					columnsL="1" columnsM="1" class="editableForm">
+					<f:content>
+						<Label text="{i18n>lbl_vendor_category}" />
+						<ComboBox id="category_quota_combo" items="{vc>/result}" selectedKey="{allocation>/vendorCategory}" enabled="{path:'allocation>/action', formatter:'.comboEditable'}"
+							selectionChange="onVendorCategoryChanged">
+							<items>
+								<core:ListItem text="{vc>val}" key="{vc>key}" />
+							</items>
+						</ComboBox>
+
+						<Label text="{i18n>lbl_quota_allocation}" />
+						<Input id="category_quota_size_input" placeholder="{i18n>placeholder_quota_allocation}" maxLength="5" value="{allocation>/quotaAllocated}" />
+					</f:content>
+				</f:SimpleForm>
+			</l:content>
+		</l:Grid>
+		<buttons>
+			<Button text="{i18n>btn_action_save}" press="handleActionOnCategory"
+				type="Accept"  app:action="{allocation>/action}" /> 
+			<Button text="{i18n>btn_action_cancel}" press="onCloseAllocationDialog"
+				type="Error" />
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

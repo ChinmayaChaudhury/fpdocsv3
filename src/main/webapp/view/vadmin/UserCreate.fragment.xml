@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Page id="userCreatePage" showHeader="{device>/isPhone}" showNavButton="{device>/isPhone}" navButtonPress="onCancelUserModifyEvent"
+		class="sapUiResponsiveContentPadding">
+		<content>
+			<Panel>
+				<content>
+					<IconTabBar backgroundDesign="Translucent">
+						<items>
+							<IconTabFilter icon="sap-icon://detail-view" iconColor="Neutral" showAll="false" text="Account Details">
+								<content>
+									<l:Grid defaultSpan="L12 M12 S12" width="auto">
+										<l:content>
+											<f:SimpleForm id="createUserRecordID" minWidth="1024" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout"
+												title="{path:'user>/action',formatter:'.getFragmentTitle'}" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1"
+												columnsM="1" class="editableForm">
+												<f:content>
+													<Label text="{i18n>lbl_user_firstname}"/>
+													<Input name="firstName" id="first_name_input" value="{user>/firstName}"/>
+													<Label text="{i18n>lbl_user_lastname}"/>
+													<Input name="lastName" id="last_name_input" value="{user>/lastName}"/>
+													<Label text="{i18n>lbl_sap_vendor_code}"/>
+													<Input name="vendorCode" enabled="false" value="{user>/vendorCode}"/>
+													<Label text="{i18n>lbl_sap_service_id}"/>
+													<Input id="user_sap_serviceid_input" name="sciAccountID" enabled="false" placeholder="{i18n>plholder_service_sapid}"
+														value="{user>/sciAccountID}"/>
+													<Label text="{i18n>lbl_login_service_id}"/>
+													<Input id="userName_input" name="userName" enabled="false" placeholder="{i18n>lbl_login_service_id}" value="{user>/userName}" change="isSpecialCharacter"/>
+													<Label text="{i18n>lbl_vuser_email}"/>
+													<Input name="vendorUserEmail" id="vendorUserEmail_input" value="{user>/vendorUserEmail}"/>
+													<Label text="{i18n>lbl_vuser_group}"/>
+													<MultiComboBox id="user_group_type_combo" items="{ug>/result}" selectedKeys="{path: 'user>/vendorUserGroupIDs'}" name="vendorUserGroups"
+														placeholder="{i18n>plh_users_group_type}">
+														<items>
+															<core:ListItem text="{ug>vendorUserGroupDesc}" key="{ug>vendorGroupID}"/>
+														</items>
+													</MultiComboBox>
+													<Label text="{i18n>lbl_user_vendor_verified}"/>
+													<Switch id="account_verified_switch" state="{user>/accountValidated}" name="accountValidated" change="handleSwitch"
+														customTextOn="{i18n>lbl_account_verified}" customTextOff="{i18n>lbl_account_unverified}" class="cojUiMediumMargin">
+														<layoutData>
+															<FlexItemData growFactor="1"/>
+														</layoutData>
+													</Switch>
+													<Label text="{i18n>lbl_account_status}"/>
+													<ComboBox id="accountStatus_combo" items="{status>/result}" name="systemAccountStatus" placeholder="{i18n>plh_users_group}"
+														selectedKey="{user>/systemAccountStatus}">
+														<items>
+															<core:ListItem key="{status>key}" text="{status>val}"/>
+														</items>
+													</ComboBox>
+												</f:content>
+											</f:SimpleForm>
+										</l:content>
+									</l:Grid>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="User Roles" icon="sap-icon://shield" iconColor="Critical" visible="{path:'user>/action',formatter:'.showGroupSection'}">
+								<l:Grid defaultSpan="L12 M12 S12" width="auto">
+									<l:content>
+										<List id="sciGroupsID" noDataText="{i18n>list_no_data}" items="{assignedAuthGroups>/result}" growingScrollToLoad="true" mode="Delete" delete="onRemoveAuthGroupFromUser">
+											<items>
+												<StandardListItem title="Display Name" description="{assignedAuthGroups>display}" icon="sap-icon://shield"
+													info="{assignedAuthGroups>value}- {assignedAuthGroups>description}"/>
+											</items>
+										</List>
+									</l:content>
+								</l:Grid>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Panel>
+		</content>
+	</Page>
+</core:FragmentDefinition>

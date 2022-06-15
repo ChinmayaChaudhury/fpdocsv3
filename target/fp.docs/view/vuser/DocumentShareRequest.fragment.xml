@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:f="sap.ui.layout.form">
+	<Panel>
+		<content>
+			<f:SimpleForm minWidth="1024" maxContainerCols="2"
+				editable="true" layout="ResponsiveGridLayout" title="Create Document Share"
+				labelSpanL="3" labelSpanM="3" emptySpanL="2" emptySpanM="2"
+				columnsL="1" columnsM="1" class="editableForm">
+				<f:content>
+					<Label text="Document share name" />
+					<Input name="documentShareName" value="{req>/documentShareName}"
+						id="document_share_input" placeholder="Specify the sharing name" />
+					<ComboBox name="vendorGroupID" selectedKey="{req>/vendorGroupID}"
+						id="shareTargetGroup" placeholder="Select Group" items="{dst>/result}"
+						selectionChange="onGroupSelectionChange">
+						<items>
+							<core:ListItem text="{dst>vendorUserGroupName}" key="{dst>vendorGroupID}" />
+						</items>
+					</ComboBox>
+					<Label text="Document share reason" />
+					<Input name="documentShareInfo" value="{req>/documentShareInfo}"
+						id="document_share_reason_input" placeholder="Enter the reason for sharing"  />
+					
+					<Label text="Select Vendor" visible="{path:'prof>/systemUserRole',formatter: '.showVendorSelectField'}" />  
+					<ComboBox name="vendorID" selectedKey="{req>/vendorID}" visible="{path:'prof>/systemUserRole',formatter:'.showVendorSelectField'}"
+						id="vendorIDField" placeholder="Select Vendor" items="{prof>/account}"
+						selectionChange="onVendorSelectionChanged">
+						<items>
+							<core:ListItem text="{prof>vendorCode}-{prof>vendorName}"  key="{prof>vendorID}" />
+						</items>
+					</ComboBox> 
+					
+					<Label text="Share with" id="shareWithID" />
+					<MultiComboBox name="sharedWithIDs"
+						selectedKeys="{req>/sharedWithIDs}" id="shared_with_multiple_combo"
+						selectionChange="handleSelectionChange" selectionFinish="handleSelectionFinish"
+						width="500px"
+						items="{path: 'col>/result',sorter: { path: 'col>fairPriceUserID' }}">
+						<core:Item key="{col>fairPriceUserID}"
+							text=" {parts: [{path:'col>firstName'},{path:'col>fairPriceEmail'}], formatter: 'Formatter.mergeEmailNName'}" />
+					</MultiComboBox>
+
+				</f:content>
+			</f:SimpleForm>
+			<f:SimpleForm minWidth="1024" maxContainerCols="2"
+				editable="true" layout="ResponsiveGridLayout" title="Create Document Share"
+				labelSpanL="2" labelSpanM="2" emptySpanL="1" emptySpanM="1"
+				columnsL="1" columnsM="1" class="editableForm" emptySpanS="1">
+
+				 <f:content>
+					<Label text="Secure with passcode" /> 
+					<Switch name="passcodeSecured" change="handleSwitchPasscode"
+						id="passcode_switch" state="{req>/passcodeSecured}"/>
+					<Input name="passcode" value="{req>/passcode}"
+						id="passcode_input_00" placeholder="Enter Passcode" type="Password"
+						visible="{path:'req>/passcode',formatter:'Formatter.showSwitchField'}" maxLength="5" />
+					<Input id="passcode_input_01" placeholder="Confirm Passcode" value="{req>/confirmPasscode}"
+						type="Password" visible="{path:'req>/confirmPasscode',formatter:'Formatter.showSwitchField'}" maxLength="5" />
+ 
+ 
+
+					<Label text="Limit Availability" /> 
+					<Switch name="availabilityLimited" change="handleSwitchAvailability"
+						id="switch_availability" state="{req>/availabilityLimited}"/>
+					<Input name="availabilityTenure" value="{req>/availabilityTenure}"
+						id="availability_input" placeholder="No. of days" visible="{path:'req>/availabilityTenure',formatter:'Formatter.showSwitchField'}"
+						maxLength="2" type="Number" /> 
+				</f:content>  
+			</f:SimpleForm>
+		</content>
+	</Panel>
+</core:FragmentDefinition>

@@ -1,0 +1,10 @@
+Dear ${displayName}, 
+
+Access to documents in folder '${folderName}' has been revoked. 
+   
+Please note the documents folder '${folderName}' is no longer accessible in your 'outbox'
+
+Thank you!
+
+Kind Regards,
+FairPrice Document Share Team

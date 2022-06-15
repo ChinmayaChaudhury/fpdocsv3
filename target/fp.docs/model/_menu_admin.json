@@ -1,0 +1,26 @@
+{
+	"menu": 
+	[
+		{
+			"menu_display": "FP Vendor Management",
+			"menu_info": "Maintain the FP Vendor accounts commissioning and de-commissioning",
+			"menu_action": "admin_vendors",
+			"menu_icon":"customer-and-supplier"
+		},
+
+		{
+			"menu_display": "FP User Management",
+			"menu_info": " Maintain the FP internal users commissioning and de-commissioning",
+			"menu_action": "admin_users",
+			"menu_icon":"employee"
+		},
+
+		{
+			"menu_display": "Manage Settings",
+			"menu_info": "Maintain the global setting on of the document share",
+			"menu_action": "admin_setup",
+			"menu_icon":"settings"
+		} 
+	]
+} 
+ 

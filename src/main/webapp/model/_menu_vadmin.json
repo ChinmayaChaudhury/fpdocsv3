@@ -1,0 +1,20 @@
+{
+	"menu": 
+	[
+		{
+			"menu_display": "Account Management",
+			"menu_info": "Maintain the FP Vendor accounts commissioning and de-commissioning",
+			"menu_action": "admin_account",
+			"menu_icon":"account"
+		},
+
+		{
+			"menu_display": "User Management",
+			"menu_info": " Maintain the FP internal users commissioning and de-commissioning",
+			"menu_action": "admin_users",
+			"menu_icon":"employee"
+		} 
+		
+	]
+} 
+ 

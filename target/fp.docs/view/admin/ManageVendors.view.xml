@@ -1,0 +1,55 @@
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="controller.admin.ManageVendors"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Page id="vendorDetailPage" navButtonPress="onNavBack"
+		showNavButton="{device>/isPhone}" title="{i18n>admin_vendorMgtTitle}">
+		<customHeader>
+			<Bar>
+				<contentLeft>
+					<Label text="{i18n>admin_vendorMgtTitle}" width="100%" />
+				</contentLeft>
+				<contentRight>
+					<core:Fragment fragmentName="view.all.CustomHeader"
+						type="XML" />
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<footer>
+			<Toolbar width="100%">
+				<content>
+					<Button xmlns="sap.m" id="btn_edit_vendor" visible="false"
+						busyIndicatorDelay="1000" text="{i18n>btn_action_edit}" type="None"
+						icon="sap-icon://edit" iconFirst="true" iconDensityAware="true"
+						textDirection="Inherit" press="onPressEditVendor" />
+					<Button xmlns="sap.m" id="btn_delete" visible="false"
+						busyIndicatorDelay="1000" text="{i18n>btn_action_delete}" type="Reject"
+						icon="sap-icon://delete" iconFirst="true" iconDensityAware="true"
+						textDirection="Inherit" press="onDeleteVendorAccountEvent" />
+					<Button xmlns="sap.m" id="btn_cancel_vendor" visible="false"
+						busyIndicatorDelay="1000" text="{i18n>btn_action_cancel}" type="Reject"
+						icon="sap-icon://back" iconFirst="true" iconDensityAware="true"
+						textDirection="Inherit" press="onCancelVendorModifyEvent" />
+					<Button xmlns="sap.m" id="btn_save_vendor" visible="false"
+						app:action="{vendor>/action}" busyIndicatorDelay="1000"
+						text="{i18n>btn_action_save}" type="Emphasized" icon="sap-icon://save"
+						iconFirst="true" iconDensityAware="true" textDirection="Inherit"
+						press="onPressSaveVendorDetails" />
+					<Button xmlns="sap.m" id="btn_resend_email" visible="false"
+						busyIndicatorDelay="1000" text="{i18n>btn_action_resend_email}"
+						type="Transparent " icon="sap-icon://email" iconFirst="true"
+						iconDensityAware="true" textDirection="Inherit" press="handleEmailResend" />
+					<Button xmlns="sap.m" id="btn_new_vendor" busy="false"
+						busyIndicatorDelay="1000" visible="true" text="{i18n>lbl_new_vendor}"
+						type="Emphasized" enabled="true" icon="sap-icon://supplier"
+						iconFirst="true" iconDensityAware="true" textDirection="Inherit"
+						validateFieldGroup="" tap="" press="onPressCreateNewVendor" />
+					<!-- <Button xmlns="sap.m" id="bulkVendoCreate" busy="false"
+						busyIndicatorDelay="1000" visible="false" text="{i18n>lbl_new_vendor_bulk}"
+						type="Default" enabled="true" icon="sap-icon://upload" iconFirst="true"
+						iconDensityAware="true" textDirection="Inherit"
+						validateFieldGroup="" tap="" press="onCreateVendorPressBulk" /> -->
+				</content>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>
